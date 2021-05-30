@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset = "utf-8">
-        <title>테스트</title>
+        <title>오늘의 키워드</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
             type="text/javascript"></script>
         <script>
@@ -82,6 +82,21 @@
                     showKeywords();
                 });
 
+                $("#social").click(function(){ // 사회 버튼 클릭
+                    section = '사회'
+                    showKeywords();
+                });
+
+                $("#lifeCulture").click(function(){ // 생활/문화 버튼 클릭
+                    section = '생활/문화'
+                    showKeywords();
+                });
+
+                $("#global").click(function(){ // 세계 버튼 클릭
+                    section = '세계'
+                    showKeywords();
+                });
+
                 $("#science").click(function(){ // 과학 버튼 클릭
                     section = '과학'
                     showKeywords();
@@ -100,6 +115,9 @@
 
         <input type="button" id="politic" value="정치" />
         <input type="button" id="economy" value="경제" />
+        <input type="button" id="social" value="사회" />
+        <input type="button" id="lifeCulture" value="생활/문화" />
+        <input type="button" id="global" value="세계" />
         <input type="button" id="science" value="과학" />
         <br>
     
