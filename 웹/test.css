@@ -1,0 +1,128 @@
+/* id는 #으로, class는 .으로! */
+/* id는 한번만, class는 여러번 사용 가능 */
+@font-face {
+    font-family: 'GowunDodum-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Vitro_core';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Vitro_core.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'EliceDigitalBaeum_Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/EliceDigitalBaeum_Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'RixYeoljeongdo_Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2102-01@1.0/RixYeoljeongdo_Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+hr{
+    background-color: #8497B0;
+}
+body{
+    font-family: 'RixYeoljeongdo_Regular';
+}
+
+input[type=date]::-webkit-datetime-edit-text {
+    -webkit-appearance: none;
+    display: none;
+}
+input[type=date]::-webkit-datetime-edit-month-field{
+    -webkit-appearance: none;
+    display: none;
+}
+input[type=date]::-webkit-datetime-edit-day-field {
+    -webkit-appearance: none;
+    display: none;
+}
+input[type=date]::-webkit-datetime-edit-year-field {
+    -webkit-appearance: none;
+    display: none;
+}
+/* input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+} */
+
+#date{
+    font-size: 2em;
+    text-align: center;
+    margin-top: 2em;
+}
+#date button{
+    background-color: rgba(0,0,0,0);
+    border: 0;
+    outline: 0;
+    font-size: 1em;
+    font-family: inherit;
+}
+#inputDate{
+    width: 3%;
+}
+
+.main{
+    text-align: center;
+}
+.grid{
+    display: inline-block;
+    vertical-align: top;
+    height: 100%;
+}
+
+.grid.category{
+    background-color: #E5EBF4;
+    padding: 3%;
+    width: 10%;
+}
+
+.grid.category button{
+    width: 80%;
+    margin-top: 10px;
+    padding: 7% 5%;
+    background-color: #8497B0;
+    border: 0;
+    color: white;
+
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.grid.category button:hover{
+    color: white;
+    background-color: #F4B183;
+}
+
+.grid.result1{
+    background-color: #E5EBF4;
+    width: 30%;
+    margin-left: 3%;
+    margin-top: 5%;
+    padding: 2%;
+}
+
+.grid.result2{
+    background-color: #E5EBF4;
+    width: 35%;
+    margin-left: 1%;
+    margin-top: 5%;
+    padding: 2%;
+}
+
+.grid.result3{
+    background-color: #E5EBF4;
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 2%;
+    padding: 2%;
+}
