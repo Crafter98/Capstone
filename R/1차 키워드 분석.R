@@ -11,8 +11,10 @@ useNIADic() # KoNLP에서 지원하는 NIA사전
 con <- dbConnect(MySQL(),
                  user = 'user',
                  password = 'KAU',
-                 host = "125.187.32.134",
+                 #host = "125.187.32.134",
+                 host = "localhost",
                  dbname = 'capstone')
+
 dbSendQuery(con, "ALTER TABLE primary_keywords convert to charset utf8;")
 dbSendQuery(con, "SET NAMES utf8;")
 dbSendQuery(con, "SET CHARACTER SET utf8;")
@@ -24,7 +26,7 @@ for (i in secList) {
   
   df_base <- dbGetQuery(
     con,
-    paste0("SELECT section, date, title FROM primary_crawling WHERE section_num = ", i, " AND date = '2021.09.01';"))
+    paste0("SELECT section, date, title FROM primary_crawling WHERE section_num = ", i, " AND date = '2021.10.01';"))
   df_base <- as.data.frame(df_base)
   
   Encoding(df_base[,1]) <- 'UTF-8'

@@ -13,8 +13,10 @@ dbDisconnect(con)
 con <- dbConnect(MySQL(),
                  user = 'user',
                  password = 'KAU',
-                 host = "125.187.32.134",
+#                 host = "125.187.32.134",
+                 host = "localhost",
                  dbname = 'capstone')
+
 dbSendQuery(con, "ALTER TABLE secondary_keywords convert to charset utf8;")
 dbSendQuery(con, "SET NAMES utf8;")
 dbSendQuery(con, "SET CHARACTER SET utf8;")
@@ -22,7 +24,7 @@ dbSendQuery(con, "SET character_set_connection=utf8;")
 
 df_base <- dbGetQuery(
   con,
-  "SELECT section, keyword, comments, date FROM secondary_crawling WHERE date = '2021.09.01'")
+  "SELECT section, keyword, comments, date FROM secondary_crawling WHERE date = '2021.10.01'")
 df_base <- as.data.frame(df_base)
 
 Encoding(df_base[,1]) <- 'UTF-8'
