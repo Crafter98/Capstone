@@ -3,17 +3,13 @@ import pandas as pd
 import pymysql
 from sqlalchemy import create_engine
 
-# MySQL Connector using pymysql
 pymysql.install_as_MySQLdb()
 import MySQLdb
 
 from bs4 import BeautifulSoup
-import csv
 import re
-import operator
-import time
 import datetime
-import bs4.element
+
 
 headers = {
     'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"}
@@ -26,6 +22,19 @@ def get_soup_obj(url):
 
     return soup
 
+def dateChange(temp):
+    today = datetime.datetime.now()
+    num = re.sub(r'[^0-9]', '', date)
+    unit = temp[-1:]
+    if unit == '분':
+        today = today + datetime.timedelta(minutes = -int(num))
+    elif unit == '간':
+        today = today + datetime.timedelta(hours = -int(num))
+    elif unit == '일':
+        today = today + datetime.timedelta(days = -int(num))
+
+    return datetime.datetime.strftime(today,'%Y.%m.%d')
+
 # DB 연결파트
 ############## engine 아래에 있는거로 해보고 혹시 안되면 말해줘! ##############
 engine = create_engine("mysql+mysqldb://user:KAU@localhost:3306/capstone", encoding='utf-8')
@@ -36,13 +45,13 @@ conn = engine.connect()
 # 뉴스의 기본 정보 가져오기
 # 날짜별로 크롤링
 ############## 여기 for문에서 날짜 범위 설정하기 ##############
-for a in range(20210901, 20210902):
+for a in range(20211001, 20211002):
     print(a)
 
     # 뉴스 섹션 (ex. 100 -> 경제)
     for sid in ['100', '101', '102', '103', '104', '105']:
         news_list = []
-        idx = 0
+        idx = 1
 
         for i in range(1, 201):
             p = i
@@ -77,11 +86,12 @@ for a in range(20210901, 20210902):
                         url = li.find('a')['href']
                         title = li.find('a').get_text()
                         date = li.find(class_='date').get_text()
-                        idx += 1
                     except AttributeError as err:
                         print(err)
                     else:
                         date = date.split(" ")[0][:-1]
+                        if len(date) != 10:
+                            date = dateChange(date)
                         news_info = {
                             "news_section": section,
                             "news_url": url,
@@ -91,6 +101,7 @@ for a in range(20210901, 20210902):
                             "idx" : idx
                         }
                         news_list.append(news_info)
+                        idx += 1
 
             ####### 끝 페이지 도착하면 반복문 끝내고 DB 저장 #######
             if p < i:
