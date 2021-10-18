@@ -8,8 +8,6 @@ from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 import re
-import sys
-import pprint
 
 
 def sentence(l):
@@ -17,9 +15,9 @@ def sentence(l):
     for elem in l:
         if type(elem) == list:
             for e in elem:
-                string = string + ' ' + str(e)
+                string = string + ' ' + str(e) + '\n'
         else:
-            string = string + ' ' + str(elem)
+            string = string + ' ' + str(elem) + '\n'
     return string
 
 engine = create_engine("mysql+mysqldb://user:KAU@localhost:3306/capstone", encoding='utf-8')
