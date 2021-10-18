@@ -1,0 +1,113 @@
+@font-face {
+    font-family: 'EliceDigitalBaeum_Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/EliceDigitalBaeum_Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+body{
+    font-family: 'EliceDigitalBaeum_Bold';
+    overflow: auto;
+    margin: 0;
+    padding: 0;
+    background-color: #E5EBF4;
+}
+.updown{
+
+    border: 1px solid #88898B;
+    background-color: #88898B;
+    width: 2px;
+    height: 100px;
+
+    /* position: relative;
+    left: 175px; */
+}
+.banner{
+    text-align: center;
+    border-radius: 20px;
+    background-color: white;
+    padding: 2%;
+    margin: 5%;
+}
+
+#newsTopic{
+    text-align: center;
+    border-radius: 50px;
+    background-color: white;
+    padding: 5%;
+    margin: 5% 3%;
+}
+.keywordCircle{
+    display: inline-block;
+    width: 15%;
+    margin: 2%;
+}
+
+.temp{
+    /* display: inline-block; */
+    text-align: center;
+    border-radius: 50px;
+    background-color: white;
+    padding: 2%;
+    margin: 5% 3%;
+}
+.temp button{
+    margin: 15px;
+    width: 100%;
+    border-radius: 50%;
+    position: relative;
+}
+.temp #keyword1{
+    background-color: #88898B;
+    color: white;
+    border: 0;
+
+    top: 100px;
+}
+.temp #keyword2{
+    background-color:#89BDE4;
+    color: white;
+    border: 0;
+
+    top: 35px;
+}
+.temp #keyword3{
+    background-color:#DF898A;
+    color: white;
+    border: 0;
+
+    top: 50px;
+}
+.temp #keyword4{
+    background-color:#87D8AF;
+    color: white;
+    border: 0;
+
+    top: 40px;
+}
+.temp #keyword5{
+    background-color:#FBE18C;
+    color: white;
+    border: 0;
+
+    top: 80px;
+}
+
+.day{
+    display: inline-block;
+    vertical-align: top;
+    height: 100%;
+    margin: 2%;
+}
+
+.day.before{
+    width: 15%;
+    background-color: #EEF2F9;
+    border-radius: 20px;
+}
+
+.day .date{
+    padding: 7%;;
+    background-color: #89BDE4;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
