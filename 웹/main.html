@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title>오늘의 키워드</title>
+        <link href="main.css?af" type="text/css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+            type="text/javascript"></script>
+
+        <script>
+            function rgb2hex(rgb) {
+                if (  rgb.search("rgb") == -1 ) {
+                    return rgb;
+                } else {
+                    rgb = rgb.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+))?\)$/);
+                    function hex(x) {
+                        return ("0" + parseInt(x).toString(16)).slice(-2);
+                    }
+                    return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+                }
+            }
+
+            function circleSize(){
+                for(var i = 1; i <= 5; i++){
+                    var ID = ".keyword" + i
+                    var width = $(ID).width()
+                    $(ID).css("height", width)
+                }
+                $(".rank").css("height", $(".rank").width())
+            }
+
+            function positioning(){
+                var maxWidth = $(window).width()
+                var maxHeight = $(window).height()
+                $(".temp").css("height", maxHeight)
+
+                for(var i = 1; i <= 5; i++){
+                    var name = ".keyword" + i
+                    var color = rgb2hex($(".btn"+name).css("background-color"))
+                    $(".updown" + name).css("background-color", color)
+                    $(".updown" + name).css("border", "1px solid " + color)
+                    $(".rank.circle" + i).css("background-color", color)
+
+                    var width = $(".keywordCircle").width()
+                    $(".updown" + name).css("left", width/2 + "px")
+
+                    // var topA = $(name).offset().top
+                    // var topB = $(".rank.circle" + i).offset().top
+                    // $(".updown" + name).css("height", topB-topA+"px")
+                }
+            }
+
+            $(document).ready(function(){
+                circleSize()
+                positioning()
+            });
+
+            $(window).resize(function(){
+                circleSize()
+                positioning()
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="banner" >
+            <h1>배너 넣기</h1>
+            <h1>우아악</h1>
+        </div>
+
+        <div class="temp">
+            <h1>TOP 5</h1>
+            <div class="keywordCircle">
+                <button class="btn keyword1">키워드1</button>
+                <div class="updown keyword1"></div>
+                <button class="rank circle1">1</button>
+            </div>
+
+            <div class="keywordCircle">
+                <button class="btn keyword2">키워드2</button>
+                <div class="updown keyword2"></div>
+                <button class="rank circle2">2</button>
+            </div>
+
+            <div class="keywordCircle">
+                <button class="btn keyword3">키워드3</button>
+                <div class="updown keyword3"></div>
+                <button class="rank circle3">3</button>
+            </div>
+
+            <div class="keywordCircle">
+                <button class="btn keyword4">키워드4</button>
+                <div class="updown keyword4"></div>
+                <button class="rank circle4">4</button>
+            </div>
+
+            <div class="keywordCircle">
+                <button class="btn keyword5">키워드5</button>
+                <div class="updown keyword5"></div>
+                <button class="rank circle5">5</button>
+            </div>
+            
+            <!-- <button id="keyword1">키워드1</button>
+            <button id="keyword2">키워드2</button>
+            <button id="keyword3">키워드3</button>
+            <button id="keyword4">키워드4</button>
+            <button id="keyword5">키워드5</button>
+
+            <div class="updown"></div> -->
+        </div>
+
+        <div id="newsTopic">
+
+            <h1>🔥인기 뉴스 키워드🔥</h1>
+            <div class="day before">
+                <div class="date">2021.10.12</div>
+                <div class="keywords">
+                    <p>키워드 1</p>
+                    <p>키워드 2</p>
+                    <p>키워드 3</p>
+                    <p>키워드 4</p>
+                    <p>키워드 5</p>
+                    <p>키워드 6</p>
+                    <p>키워드 7</p>
+                    <p>키워드 8</p>
+                    <p>키워드 9</p>
+                    <p>키워드 10</p>
+                </div>
+            </div>
+
+            <div class="day before">
+                <div class="date">2021.10.13</div>
+                <div class="keywords">
+                    <p>키워드 1</p>
+                    <p>키워드 2</p>
+                    <p>키워드 3</p>
+                    <p>키워드 4</p>
+                    <p>키워드 5</p>
+                    <p>키워드 6</p>
+                    <p>키워드 7</p>
+                    <p>키워드 8</p>
+                    <p>키워드 9</p>
+                    <p>키워드 10</p>
+                </div>
+            </div>
+
+            <div class="day before">
+                <div class="date">2021.10.14</div>
+                <div class="keywords">
+                    <p>키워드 1</p>
+                    <p>키워드 2</p>
+                    <p>키워드 3</p>
+                    <p>키워드 4</p>
+                    <p>키워드 5</p>
+                    <p>키워드 6</p>
+                    <p>키워드 7</p>
+                    <p>키워드 8</p>
+                    <p>키워드 9</p>
+                    <p>키워드 10</p>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>
