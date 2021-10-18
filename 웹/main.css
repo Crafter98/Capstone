@@ -11,22 +11,18 @@ body{
     padding: 0;
     background-color: #E5EBF4;
 }
-.updown{
-
-    border: 1px solid #88898B;
-    background-color: #88898B;
-    width: 2px;
-    height: 100px;
-
-    /* position: relative;
-    left: 175px; */
+button{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 0;
 }
 .banner{
     text-align: center;
-    border-radius: 20px;
+    border-radius: 50px;
     background-color: white;
-    padding: 2%;
-    margin: 5%;
+    padding: 5%;
+    margin: 5% 3%;
 }
 
 #newsTopic{
@@ -41,9 +37,19 @@ body{
     width: 15%;
     margin: 2%;
 }
+.updown{
+    border: 1px solid #88898B;
+    background-color: #88898B;
+    width: 2px;
+    height: 230px;
+    z-index: 1;
+
+    position: relative;
+    /* top: 40px; */
+    /* bottom: 10px; */
+}
 
 .temp{
-    /* display: inline-block; */
     text-align: center;
     border-radius: 50px;
     background-color: white;
@@ -51,45 +57,58 @@ body{
     margin: 5% 3%;
 }
 .temp button{
-    margin: 15px;
     width: 100%;
     border-radius: 50%;
     position: relative;
+    z-index: 2;
 }
-.temp #keyword1{
+.temp .rank{
+    width: 30%;
+    border: 0;
+    color: white;
+    font-weight: bold;
+    position: relative;
+    /* bottom: 10px; */
+}
+.temp .btn.keyword1{
     background-color: #88898B;
     color: white;
     border: 0;
+    width: 70%;
 
-    top: 100px;
+    top: 60px;
 }
-.temp #keyword2{
+.temp .btn.keyword2{
     background-color:#89BDE4;
     color: white;
     border: 0;
+    width: 90%;
 
-    top: 35px;
+    top: 20px;
 }
-.temp #keyword3{
+.temp .btn.keyword3{
     background-color:#DF898A;
     color: white;
     border: 0;
+    width: 100%;
 
-    top: 50px;
+    top: 30px;
 }
-.temp #keyword4{
+.temp .btn.keyword4{
     background-color:#87D8AF;
     color: white;
     border: 0;
+    width: 70%;
 
-    top: 40px;
+    top: 20px;
 }
-.temp #keyword5{
+.temp .btn.keyword5{
     background-color:#FBE18C;
     color: white;
     border: 0;
+    width: 80%;
 
-    top: 80px;
+    top: 40px;
 }
 
 .day{
