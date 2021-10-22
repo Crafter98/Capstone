@@ -11,6 +11,10 @@ html, body{
     padding: 0;
     background-color: #E5EBF4;
 }
+h1{
+    margin: 0;
+    padding: 0;
+}
 button{
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -26,10 +30,16 @@ button{
 }
 .clickDown{
     text-align: center;
-    border-radius: 50px;
+    background-color: cornflowerblue;;
+    margin-top: 0;
+}
+#down{
+    border: 0;
     background-color: white;
-    padding: 5%;
-    margin: 5% 3%;
+    color: cornflowerblue;
+    border-radius: 50px;
+    margin-top: 100px;
+    padding: 10px;
 }
 
 #newsTopic{
@@ -71,6 +81,9 @@ button{
     font-size: 2em;
     font-family: 'EliceDigitalBaeum_Bold';
 }
+#top5Date{
+    font-size: 50px;
+}
 .top5 .rank{
     width: 20%;
     border: 0;
@@ -88,7 +101,7 @@ button{
     transform: scale(1.1,1.1);
     transition: .5s;
 }
-.top5 .btn.keyword1{
+.top5 .btn.keyword4{
     background-color: #88898B;
     color: white;
     border: 0;
@@ -104,7 +117,7 @@ button{
 
     top: 20px;
 }
-.top5 .btn.keyword3{
+.top5 .btn.keyword1{
     background-color:#DF898A;
     color: white;
     border: 0;
@@ -112,7 +125,7 @@ button{
 
     top: 30px;
 }
-.top5 .btn.keyword4{
+.top5 .btn.keyword3{
     background-color:#87D8AF;
     color: white;
     border: 0;
@@ -154,6 +167,7 @@ button{
     right: 2%;
     bottom: 50px;
     z-index: 999;
+    display: none;
 
     border-radius: 50%;
     border: 0;

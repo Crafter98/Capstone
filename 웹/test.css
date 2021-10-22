@@ -34,7 +34,7 @@
 hr{
     background-color: #8497B0;
 }
-body{
+html, body{
     font-family: 'EliceDigitalBaeum_Bold';
     margin: 0;
     padding: 0;
@@ -62,10 +62,44 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     -webkit-appearance: none;
 } */
 
+.category{
+    background-color: #E5EBF4;
+    padding: 0% 3%;
+    margin: 0;
+    width: 10%;
+    height: 100%;
+    text-align: center;
+
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    /* float: left; */
+    position: fixed;
+}
+.category p{
+    margin-top: 150px;
+}
+.category button{
+    width: 100%;
+    margin-top: 10px;
+    padding: 7% 5%;
+    background-color: #8497B0;
+    border: 0;
+    color: white;
+
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.category button:hover{
+    color: white;
+    background-color: #F4B183;
+}
+
 #date{
     font-size: 2em;
     text-align: center;
-    margin-top: 2em;
+    /* margin-top: 2em; */
 }
 #date button{
     background-color: rgba(0,0,0,0);
@@ -87,36 +121,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     height: 100%;
 }
 
-.grid.category{
-    background-color: #E5EBF4;
-    padding: 3%;
-    width: 10%;
-}
-
-.grid.category button{
-    width: 80%;
-    margin-top: 10px;
-    padding: 7% 5%;
-    background-color: #8497B0;
-    border: 0;
-    color: white;
-
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-.grid.category button:hover{
-    color: white;
-    background-color: #F4B183;
-}
-
 .grid.result1{
     background-color: #E5EBF4;
     width: 30%;
-    margin-left: 3%;
+    margin-left: 10%;
     margin-top: 5%;
     padding: 2%;
+    border-radius: 50px;
 }
 
 .grid.result2{
@@ -125,6 +136,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-left: 1%;
     margin-top: 5%;
     padding: 2%;
+    border-radius: 50px;
 }
 
 .grid.result3{
@@ -133,4 +145,5 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-left: 20%;
     margin-top: 2%;
     padding: 2%;
+    border-radius: 50px;
 }

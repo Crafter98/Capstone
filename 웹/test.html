@@ -3,7 +3,7 @@
     <head>
         <meta charset = "utf-8">
         <title>오늘의 키워드</title>
-        <link href="test.css?a" type="text/css" rel="stylesheet">
+        <link href="test.css?af" type="text/css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
             type="text/javascript"></script>
 
@@ -78,7 +78,7 @@
                 // 오늘 하루 전으로 기본 세팅
                 var now = new Date();
                 now.setDate(now.getDate()-1);
-                var now = dateToString(now);
+                now = dateToString(now);
                 var cur = now; // now = 오늘 날짜, cur = 현재 선택된 날짜
                 var section = '정치';
 
@@ -201,6 +201,17 @@
     </head>
 
     <body>
+        <div class="category">
+            <p>카테고리</p>
+            <hr>
+            <button id="politic">정치</button>
+            <button id="economy">경제</button>
+            <button id="social">사회</button>
+            <button id="lifeCulture">생활/문화</button>
+            <button id="global">세계</button>
+            <button id="science">IT/과학</button>
+        </div>
+        
         <div id="date">
             <button id="yes">&lt</button>
             <p1 id="currentDate"></p1>
@@ -210,17 +221,6 @@
         <br><br>
 
         <div class="main">
-            <div class="grid category">
-                <p>카테고리</p>
-                <hr>
-                <button id="politic">정치</button>
-                <button id="economy">경제</button>
-                <button id="social">사회</button>
-                <button id="lifeCulture">생활/문화</button>
-                <button id="global">세계</button>
-                <button id="science">IT/과학</button>
-            </div>
-        
             <div class="grid result1">
                 <div id="keywordTable" class="table-responsive"></div>
             </div>
