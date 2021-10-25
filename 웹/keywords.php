@@ -27,26 +27,39 @@ $query .= "ORDER BY frequency desc;";
 $result = mysqli_query($conn, $query);
 
 // query 결과를 table로 만들어 웹에 return
-$output .= '
-<table class="table table-bordered table-hover" width="100%">
-<tr>
-<th width="20%" height="70px">순위</th>
-<th width="20%">키워드</th>
-<th width="20%">언급량</th>
-</tr>
-';
+// $output .= '
+// <table class="table table-bordered table-hover" width="100%">
+// <tr>
+// <th width="20%" height="70px">순위</th>
+// <th width="20%">키워드</th>
+// <th width="20%">언급량</th>
+// </tr>
+// ';
 
+// $i = 1;
+// while($row = mysqli_fetch_array($result)){
+//     $output .= '
+//     <tr>
+//     <td>'.$i.'</td>
+//     <td onClick="ClickKeyword(this);">'.$row["keyword"].'</td>
+//     <td height="30px">'.$row["frequency"].'</td>
+//     </tr>
+//     ';
+//     $i = $i + 1;
+// }
+// $output .= '</table>';
+// echo $output;
+
+////////////////////// new code ////////////////////////
 $i = 1;
 while($row = mysqli_fetch_array($result)){
-    $output .= '
-    <tr>
-    <td>'.$i.'</td>
-    <td onClick="ClickKeyword(this);">'.$row["keyword"].'</td>
-    <td height="30px">'.$row["frequency"].'</td>
-    </tr>
-    ';
+    // $output["keyword".$i] = $row["keyword"]."&#13;".$row["frequency"];
+    $output["keyword".$i] = $row["keyword"];
+
     $i = $i + 1;
+    if($i > 5){
+        break;
+    }
 }
-$output .= '</table>';
-echo $output;
+echo json_encode($output, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 ?>

@@ -31,8 +31,8 @@ def sentence(l):
             string = string + ' ' + str(elem)
     return string
 
-engine = create_engine("mysql+mysqldb://user:KAU@localhost:3306/capstone", encoding='utf-8')
-# engine = create_engine("mysql+mysqldb://user:KAU@125.187.32.134:3306/capstone", encoding='utf-8')
+# engine = create_engine("mysql+mysqldb://user:KAU@localhost:3306/capstone", encoding='utf-8')
+engine = create_engine("mysql+mysqldb://user:KAU@125.187.32.134:3306/capstone", encoding='utf-8')
 conn = engine.connect()
 
 # 1차 키워드 날짜 설정해서 가져오기
