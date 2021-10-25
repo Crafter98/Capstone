@@ -3,11 +3,14 @@
     <head>
         <meta charset = "utf-8">
         <title>오늘의 키워드</title>
-        <link href="test.css?af" type="text/css" rel="stylesheet">
+        <link href="test.css?a" type="text/css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
             type="text/javascript"></script>
 
         <script>
+            function btnsiteNameClick(){
+                location.href = "http://localhost/웹/main.html"
+            }
             // 키워드 클릭했을 때 색 바꾸고 결과 띄우는 함수
             function ClickKeyword(target){
                 $("#keywordTable td").css("border", "0")
@@ -66,15 +69,38 @@
             function activateButton(btn){
                 btn = toEnglish(btn)
                 $(btn).css("background-color", "#F4B183")
+                // $(btn).css("background-color", "#8497B0")
             }
             function inactivateButton(btn){
                 btn = toEnglish(btn)
                 $(btn).css("background-color", "#8497B0")
-            }     
+                // $(btn).css("background-color", "#89BDE4")
+            }
+
+            function receiveKeyword(){
+                $.ajax({
+                    url:"http://localhost/웹/main.html",
+                    method: "GET",
+                    success: function(resp){
+                        console.log(resp)
+                    }
+                })
+            }
+
+            function setDiv(){
+                var width = $(".category").width()
+                var padding = $(".category").css("padding-left").replace(/[^-\d\.]/g, '')
+                
+                width = width + padding * 2
+                $("#detail").css("margin-left", width + "px")
+            }
         </script>
 
         <script>
             $(document).ready(function(){
+                // receiveKeyword()
+                setDiv()
+
                 // 오늘 하루 전으로 기본 세팅
                 var now = new Date();
                 now.setDate(now.getDate()-1);
@@ -138,7 +164,24 @@
                 });
 
                 // php와 연동해서 그 날의 키워드 보여주는 함수
-                function showKeywords(){
+                // function showKeywords(){
+                //     dateChange = $("#currentDate").text().replace(/-/gi, '.')
+                //     $.ajax({
+                //         url: "keywords.php",
+                //         type: "post",
+                //         data: {date : dateChange,
+                //                 section : section},
+                //     }).done(function(data) {
+                //         $('#keywordTable').html(data);
+
+                //         var keyword = $("#keywordTable tr:eq(1) td:eq(1)")
+                //         var query = '<td onclick="ClickKeyword(this);" style="border: 2px solid red;">' + keyword.text() + '</td>'
+                //         ClickKeyword(query)
+                //         keyword.css("border", "2px solid red")
+                //     });
+                // }
+
+                function showKeywords(date){
                     dateChange = $("#currentDate").text().replace(/-/gi, '.')
                     $.ajax({
                         url: "keywords.php",
@@ -146,12 +189,14 @@
                         data: {date : dateChange,
                                 section : section},
                     }).done(function(data) {
-                        $('#keywordTable').html(data);
-
-                        var keyword = $("#keywordTable tr:eq(1) td:eq(1)")
-                        var query = '<td onclick="ClickKeyword(this);" style="border: 2px solid red;">' + keyword.text() + '</td>'
-                        ClickKeyword(query)
-                        keyword.css("border", "2px solid red")
+                        console.log(data)
+                        data = $.parseJSON(data)
+                        var keys = Object.keys(data)
+                        for(var i = 0; i < keys.length; i++){
+                            var key = keys[i]
+                            // $(".btn.keyword" + (i + 1)).html(data[key])
+                            $(".result.keyword" + (i + 1)).html(data[key])
+                        }
                     });
                 }
 
@@ -197,11 +242,16 @@
                     showKeywords();
                 });
             });
+
+            $(window).resize(function(){
+                setDiv()
+            });
         </script>
     </head>
 
     <body>
         <div class="category">
+            <button id="siteName" onclick="btnsiteNameClick()">오늘의 키워드</button>
             <p>카테고리</p>
             <hr>
             <button id="politic">정치</button>
@@ -212,28 +262,68 @@
             <button id="science">IT/과학</button>
         </div>
         
-        <div id="date">
-            <button id="yes">&lt</button>
-            <p1 id="currentDate"></p1>
-            <button id="tom">&gt</button>
-            <input type="date" id="inputDate"/>
+        <div id="detail">
+            <div id="date">
+                <button id="yes">&lt</button>
+                <p1 id="currentDate"></p1>
+                <button id="tom">&gt</button>
+                <input type="date" id="inputDate"/>
+            </div>
+            <br><br>
+    
+            <div class="main">
+                <div class="grid temp">
+                    <div class="wrapper">
+                        <p class="result keyword1"></p>
+                        <div class="stair first">
+                            <img class="medal" src="image/gold.png" width="70px">
+                        </div>
+                    </div>
+                    <div class="wrapper">
+                        <p class="result keyword2"></p>
+                        <div class="stair second">
+                            <img class="medal" src="image/silver.png" width="70px">
+                        </div>
+                    </div>
+                    <div class="wrapper">
+                        <p class="result keyword3"></p>
+                        <div class="stair third">
+                            <img class="medal" src="image/bronze.png" width="70px">
+                        </div>
+                    </div>
+                    <div class="wrapper">
+                        <p class="result keyword4"></p>
+                        <div class="stair forth"></div>
+                    </div>
+                    <div class="wrapper">
+                        <p class="result keyword5"></p>
+                        <div class="stair fifth"></div>
+                    </div>
+
+                </div>
+
+
+
+                <!-- <div class="grid result1">
+                    <div id="keywordTable" class="table-responsive"></div>
+                </div> -->
+    
+                <div class="grid result2">
+                    <div id="relatedWordsTable" class="table-responsive"></div>
+                    <h1>2차 키워드</h1>
+                </div>
+    
+                <div class="grid result3">
+                    <p>result 3</p>
+                    <p>키워드 관련 뉴스 등</p>
+                    <p>키워드 관련 뉴스 등</p>
+                    <p>키워드 관련 뉴스 등</p>
+                    <p>키워드 관련 뉴스 등</p>
+                    <p>키워드 관련 뉴스 등</p>
+                </div>
+    
+            </div>
         </div>
-        <br><br>
-
-        <div class="main">
-            <div class="grid result1">
-                <div id="keywordTable" class="table-responsive"></div>
-            </div>
-
-            <div class="grid result2">
-                <div id="relatedWordsTable" class="table-responsive"></div>
-            </div>
-
-            <div class="grid result3">
-                <p>result 3</p>
-                <p>키워드 관련 뉴스 등</p>
-            </div>
-
-        </div>
+        
     </body>
 </html>

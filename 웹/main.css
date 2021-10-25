@@ -21,24 +21,41 @@ button{
     appearance: none;
     padding: 0;
 }
+button#siteName, #down, .btn :hover{
+    cursor:pointer;
+}
 
 .banner{
-    text-align: center;
+    /* text-align: center; */
     background-color: white;
     margin: 0;
     padding: 0;
 }
+#siteName{
+    border: 0;
+    background-color: white;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 1.2em;
+    font-family: 'EliceDigitalBaeum_Bold';
+}
+
 .clickDown{
     text-align: center;
     background-color: cornflowerblue;;
     margin-top: 0;
 }
+#ment{
+    padding: 10% 0%;
+    color: white;
+}
+
 #down{
     border: 0;
     background-color: white;
     color: cornflowerblue;
     border-radius: 50px;
-    margin-top: 100px;
+    margin-top: 5%px;
     padding: 10px;
 }
 
@@ -146,13 +163,14 @@ button{
     display: inline-block;
     vertical-align: top;
     height: 100%;
-    margin: 2%;
+    margin: 7% 2% 2% 2%;
 }
 
 .day.before{
-    width: 15%;
+    width: 20%;
     background-color: #EEF2F9;
     border-radius: 20px;
+    height: 100%;
 }
 
 .day .date{
