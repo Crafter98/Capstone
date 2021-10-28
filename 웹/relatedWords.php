@@ -1,25 +1,25 @@
 <?php
 
 // DB 연결 파트
-// $conn = mysqli_connect(
-//     '127.0.0.1',
-//     'root',
-//     'twailight7',
-//     'capstone'
-// );
-
 $conn = mysqli_connect(
-    '125.187.32.134',
-    'user',
-    'KAU',
+    '127.0.0.1',
+    'root',
+    'twailight7',
     'capstone'
 );
+
+// $conn = mysqli_connect(
+//     '125.187.32.134',
+//     'user',
+//     'KAU',
+//     'capstone'
+// );
 
 // 웹에서 선택된 date와 section 값 가져와서 query 작성
 $date = '\''.$_POST['date'].'\'';
 $keyword = '\''.$_POST['keyword'].'\'';
 
-// select related_word, frequency, react from secondary_keywords where date = '2021.09.02' and keyword = '이재명';
+// select related_word, frequency, react from secondary_keywords where date = '2021.09.01' and keyword = '이재명';
 
 $query = "SELECT related_word, frequency, react FROM secondary_keywords WHERE date = ";
 $query .= $date;

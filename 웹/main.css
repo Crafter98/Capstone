@@ -101,6 +101,9 @@ button#siteName, #down, .btn :hover{
 #top5Date{
     font-size: 50px;
 }
+.top5 .section{
+    display: none;
+}
 .top5 .rank{
     width: 20%;
     border: 0;
@@ -146,7 +149,7 @@ button#siteName, #down, .btn :hover{
     background-color:#87D8AF;
     color: white;
     border: 0;
-    width: 70%;
+    width: 80%;
 
     top: 20px;
 }
@@ -154,7 +157,7 @@ button#siteName, #down, .btn :hover{
     background-color:#FBE18C;
     color: white;
     border: 0;
-    width: 80%;
+    width: 70%;
 
     top: 40px;
 }
