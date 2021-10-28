@@ -3,135 +3,13 @@
     <head>
         <meta charset = "utf-8">
         <title>오늘의 키워드</title>
-        <link href="main.css?after" type="text/css" rel="stylesheet">
+        <link href="main.css?af" type="text/css" rel="stylesheet">
+        <link rel="icon" href="image/crown.png">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
             type="text/javascript"></script>
 
-        <script>
-            // 날짜를 string으로 바꿔주는 함수
-            function dateToString(curDate){
-                var year = curDate.getFullYear();
-                var month = curDate.getMonth()+1;
-                var date = curDate.getDate();
-
-                month = month >=10 ? month : "0" + month;
-                date  = date  >= 10 ? date : "0" + date;
-                return today = "" + year + "-" + month + "-" + date;
-            }
-
-            function rgb2hex(rgb) {
-                if (  rgb.search("rgb") == -1 ) {
-                    return rgb;
-                } else {
-                    rgb = rgb.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+))?\)$/);
-                    function hex(x) {
-                        return ("0" + parseInt(x).toString(16)).slice(-2);
-                    }
-                    return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
-                }
-            }
-
-            function circleSize(){
-                for(var i = 1; i <= 5; i++){
-                    var ID = ".keyword" + i
-                    var width = $(ID).width()
-                    $(ID).css("height", width)
-                }
-                $(".rank").css("height", $(".rank").width())
-            }
-
-            function positioning(){
-                var maxWidth = $(window).width()
-                var maxHeight = $(window).height()
-                $(".clickDown").css("height", maxHeight)
-
-                for(var i = 1; i <= 5; i++){
-                    var name = ".keyword" + i
-                    var color = rgb2hex($(".btn"+name).css("background-color"))
-                    $(".updown" + name).css("background-color", color)
-                    $(".updown" + name).css("border", "1px solid " + color)
-                    $(".rank.circle" + i).css("background-color", color)
-
-                    var width = $(".keywordCircle").width()
-                    $(".updown" + name).css("left", width/2-1 + "px")
-                }
-            }
-
-            function showKeywords(date){
-                dateChange = date.replace(/-/gi, '.')
-                console.log(dateChange)
-                 $.ajax({
-                    url: "mainTop5.php",
-                    type: "post",
-                    data: {date : dateChange},
-                }).done(function(data) {
-                    data = $.parseJSON(data)
-                    var keys = Object.keys(data)
-                    for(var i = 0; i < keys.length; i++){
-                        var key = keys[i]
-                        // $(".btn.keyword" + (i + 1)).html(data[key])
-                        $(".btn.keyword" + (i + 1)).html(data[key])
-                    }
-                });
-            }
-            function btnKeywordClick(target){
-                console.log($(target))
-                // location.href = "http://localhost/웹/test.html"
-                // todo : 데이터 정보 가지고 넘어가기
-
-                // dateChange = $("#currentDate").text().replace(/-/gi, '.')
-                $.ajax({
-                    url: "http://localhost/웹/test.html",
-                    type: "post",
-                    data: {keyword : "AI"},
-                }).done(function(data) {
-                    location.href = "http://localhost/웹/test.html"
-                });
-            }
-
-            function btnDownClick(){
-                var y = $(".top5").offset().top
-                $("html, body").animate({scrollTop: y - 40}, 500)
-            }
-
-            function btnTopClick(){
-                $("html, body").animate({scrollTop: 0}, 500)
-            }
-
-            function btnsiteNameClick(){
-                location.href = "http://localhost/웹/main.html"
-            }
-
-            $(document).ready(function(){
-                circleSize()
-                positioning()
-                $(window).scroll(function(){
-                    if($(this).scrollTop() > 400){
-                        $('#Top').fadeIn()
-                    }
-                    else {
-                        $('#Top').fadeOut();
-                    }
-                })
-                var now = new Date();
-                now.setDate(now.getDate()-1);
-
-                var month = now.getMonth() + 1;
-                var day = now.getDate();
-
-                now = dateToString(now);
-                
-                now = "2021.09.01"
-                showKeywords(now)
-                // $("#top5Date").text(month + "월 " + day + "일 TOP5")
-                $("#top5Date").text("9월 1일 TOP5")
-            });
-
-            $(window).resize(function(){
-                circleSize()
-                positioning()
-            });
-        </script>
+        <script src="function.js?a"></script>
+        <script src="main.js?a"></script>
     </head>
 
     <body>
@@ -140,7 +18,7 @@
         </div>
 
         <div class="clickDown">
-            <h1 id="ment">오늘의 HOT 키워드를 확인해보세요!</h1>
+            <h1 id="ment">오늘의 뉴스 HOT 키워드를 확인해보세요!</h1>
             <button id="down" onclick="btnDownClick()">자세히 알아보기</button>
         </div>
 
@@ -148,34 +26,40 @@
             <h1 id="top5Date">TOP 5</h1>
 
             <div class="keywordCircle">
-                <button class="btn keyword4" onclick="btnKeywordClick(this)">키워드4</button>
+                <button class="btn keyword4" onclick="btnKeywordClick(4)">4</button>
                 <div class="updown keyword4"></div>
                 <button class="rank circle4">4</button>
+                <div class="section keyword4"></div>
             </div>
 
             <div class="keywordCircle">
-                <button class="btn keyword2" onclick="btnKeywordClick(this)">키워드2</button>
+                <button class="btn keyword2" onclick="btnKeywordClick(2)">2</button>
                 <div class="updown keyword2"></div>
                 <button class="rank circle2">2</button>
+                <div class="section keyword2"></div>
             </div>
 
             <div class="keywordCircle">
-                <button class="btn keyword1" onclick="btnKeywordClick(this)">키워드1</button>
+                <button class="btn keyword1" onclick="btnKeywordClick(1)">1</button>
                 <div class="updown keyword1"></div>
                 <button class="rank circle1">1</button>
+                <div class="section keyword1"></div>
             </div>
 
             <div class="keywordCircle">
-                <button class="btn keyword3" onclick="btnKeywordClick(this)">키워드3</button>
+                <button class="btn keyword3" onclick="btnKeywordClick(3)">3</button>
                 <div class="updown keyword3"></div>
                 <button class="rank circle3">3</button>
+                <div class="section keyword3"></div>
             </div>
 
             <div class="keywordCircle">
-                <button class="btn keyword5" onclick="btnKeywordClick(this)">키워드5</button>
+                <button class="btn keyword5" onclick="btnKeywordClick(5)">5</button>
                 <div class="updown keyword5"></div>
                 <button class="rank circle5">5</button>
+                <div class="section keyword5"></div>
             </div>
+            
         </div>
 
         <div id="newsTopic">

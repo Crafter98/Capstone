@@ -44,27 +44,14 @@ html, body{
     padding: 0;
 }
 
-input[type=date]::-webkit-datetime-edit-text {
-    -webkit-appearance: none;
+button.ui-datepicker-trigger img{
+    width: 20px;
+    height: 20px;
+}
+
+#datePicker{
     display: none;
 }
-input[type=date]::-webkit-datetime-edit-month-field{
-    -webkit-appearance: none;
-    display: none;
-}
-input[type=date]::-webkit-datetime-edit-day-field {
-    -webkit-appearance: none;
-    display: none;
-}
-input[type=date]::-webkit-datetime-edit-year-field {
-    -webkit-appearance: none;
-    display: none;
-}
-/* input[type="date"]::-webkit-inner-spin-button,
-input[type="date"]::-webkit-calendar-picker-indicator {
-    display: none;
-    -webkit-appearance: none;
-} */
 
 .category{
     background-color: #E5EBF4;
@@ -104,7 +91,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 #siteName{
-    margin-top: 15%;
+    display: inline-block;
+    margin-top: 20%;
     border: 0;
     padding: 10px;
     font-weight: bold;
@@ -139,13 +127,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .main{
     text-align: center;
 }
+
+#newsKeywordTop5{
+    font-size: 40px !important;
+    margin: 0;
+}
+
 .grid{
     display: inline-block;
     vertical-align: top;
     height: 100%;
 }
 
-.grid.temp{
+.grid.result1{
     background-color: #E5EBF4;
     width: 90%;
     height: 500px;
@@ -155,20 +149,33 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 .result{
     font-size: 20px !important;
-    border: 2px solid #8497B0;
-    border-radius: 50px;;
 }
 
 .wrapper{
     display: inline-block;
     /* background-color: green; */
-    margin-top: 5%;
     padding: 0;
     border: 0;
     width: 15%;
-    height: 100%;
+    height: 60%;
     /* vertical-align: bottom; */
 }
+.wrapper.first{
+    height: 80%;
+}
+.wrapper.second{
+    height: 65%;
+}
+.wrapper.third{
+    height: 50%;
+}
+.wrapper.forth{
+    height: 35%;
+}
+.wrapper.fifth{
+    height: 20%;
+}
+
 .stair{
     display: inline-block;
     background-color: #F4B183;
@@ -176,51 +183,26 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding: 0;
     border: 0;
     width: 100%;
-}
-.stair.first{
-    height: 60%;
-}
-.stair.second{
-    height: 50%;
-}
-.stair.third{
-    height: 40%;
-}
-.stair.forth{
-    height: 30%;
-}
-.stair.fifth{
-    height: 20%;
-}
-.medal{
-    float: left;
-    margin-left: 30px;
-    margin-top: 20px;
+    height: 80%;
 }
 
-/* .grid.result1{
-    background-color: #E5EBF4;
-    width: 90%;
-    margin-left: 10%;
-    margin-top: 5%;
-    padding: 2%;
-    border-radius: 50px;
-} */
+.medal{
+    float: left;
+    margin-top: 30px;
+}
 
 .grid.result2{
     background-color: #E5EBF4;
-    width: 90%;
-    /* margin-left: 1%; */
-    margin-top: 5%;
+    width: 42%;
     padding: 2%;
+    margin: 3% 0%;
     border-radius: 50px;
 }
 
 .grid.result3{
     background-color: #E5EBF4;
-    width: 90%;
-    /* margin-left: 20%; */
-    margin-top: 2%;
+    width: 42%;
+    margin: 3% 0% 3% 2%;
     padding: 2%;
     border-radius: 50px;
 }

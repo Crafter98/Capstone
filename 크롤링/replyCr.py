@@ -31,12 +31,12 @@ def sentence(l):
             string = string + ' ' + str(elem)
     return string
 
-# engine = create_engine("mysql+mysqldb://user:KAU@localhost:3306/capstone", encoding='utf-8')
-engine = create_engine("mysql+mysqldb://user:KAU@125.187.32.134:3306/capstone", encoding='utf-8')
+engine = create_engine("mysql+mysqldb://user:KAU@localhost:3306/capstone", encoding='utf-8')
+# engine = create_engine("mysql+mysqldb://user:KAU@125.187.32.134:3306/capstone", encoding='utf-8')
 conn = engine.connect()
 
 # 1차 키워드 날짜 설정해서 가져오기
-sql = "SELECT * FROM primary_keywords WHERE date = '2021.09.01' ORDER BY section;"  #### WHERE절 안의 날짜는 어떻게 자동화할 것인가
+sql = "SELECT * FROM primary_keywords WHERE date = '2021.10.01' ORDER BY section;"  #### WHERE절 안의 날짜는 어떻게 자동화할 것인가
 result = engine.execute(sql).fetchall()
 
 # 제목에 키워드가 있는 뉴스의 링크를 가져와서 댓글 크롤링 진행, 저장
@@ -96,6 +96,15 @@ for data in result:
 
         comment_list.append(comments_info)
         idx = idx + 1
+
+    if len(comment_list) == 0:
+        comment_list = [{
+            "keyword": keyword,
+            "comments": "",
+            "date": date,
+            "section": section,
+            "idx": idx
+        }]
 
     df = pd.DataFrame(comment_list)
     df.columns = ['keyword', 'comments', 'date', 'section', 'idx']
