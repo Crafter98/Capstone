@@ -15,12 +15,18 @@ h1{
     margin: 0;
     padding: 0;
 }
+ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 button{
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     padding: 0;
 }
+/* ////////////////////////////////////////////////////////////////////////////////// */
 button#siteName, #down, .btn :hover{
     cursor:pointer;
 }
@@ -59,13 +65,7 @@ button#siteName, #down, .btn :hover{
     padding: 10px;
 }
 
-#newsTopic{
-    text-align: center;
-    border-radius: 50px;
-    background-color: white;
-    padding: 5%;
-    margin: 5% 3%;
-}
+/* ////////////////////////////////////////////////////////////////////////////////// */
 .keywordCircle{
     display: inline-block;
     width: 15%;
@@ -161,28 +161,83 @@ button#siteName, #down, .btn :hover{
 
     top: 40px;
 }
+/* ////////////////////////////////////////////////////////////////////////////////// */
+#newsTopic{
+    text-align: center;
+    border-radius: 50px;
+    background-color: white;
+    padding: 5%;
+    margin: 5% 3%;
+    font-size: 0;
+}
 
 .day{
     display: inline-block;
     vertical-align: top;
     height: 100%;
-    margin: 7% 2% 2% 2%;
+    margin-top: 7%;
 }
-
 .day.before{
     width: 20%;
     background-color: #EEF2F9;
     border-radius: 20px;
     height: 100%;
+    margin: 7% 0% 2% 4%;
 }
-
+.day.before.days1{
+    border-bottom-right-radius: 0;
+}
 .day .date{
     padding: 7%;;
     background-color: #89BDE4;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    font-size: 16px;
 }
 
+.keywords{
+    padding: 5%;
+}
+.keywords li{
+    padding: 3%;
+    height: 9%;
+    border-radius: 15px;
+    font-size: 16px;
+}
+.keywords li:hover{
+    background-color: whitesmoke;
+    cursor: pointer;
+}
+
+
+.day.news{
+    width: 24%;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    position: relative;
+    background-color: #EEF2F9;
+}
+
+.detailNews{
+    background-color: white;
+    height: 90%;
+    width: 95%;
+    border-radius: 20px;
+    margin: 5% 5% 5% 0%;
+}
+.detailNews li{
+    height: 45%;
+    font-size: 16px;
+}
+
+.day.news.days1{
+    margin-right: 4%;;
+}
+.day.news.days2, .day.news.days3{
+    display: none;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////// */
 #Top{
     position: fixed;
     right: 2%;
