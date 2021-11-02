@@ -36,7 +36,7 @@ engine = create_engine("mysql+mysqldb://user:KAU@localhost:3306/capstone", encod
 conn = engine.connect()
 
 # 1차 키워드 날짜 설정해서 가져오기
-sql = "SELECT * FROM primary_keywords WHERE date = '2021.10.01' ORDER BY section;"  #### WHERE절 안의 날짜는 어떻게 자동화할 것인가
+sql = "SELECT * FROM primary_keywords WHERE date = '2021.08.31' ORDER BY section;"  #### WHERE절 안의 날짜는 어떻게 자동화할 것인가
 result = engine.execute(sql).fetchall()
 
 # 제목에 키워드가 있는 뉴스의 링크를 가져와서 댓글 크롤링 진행, 저장

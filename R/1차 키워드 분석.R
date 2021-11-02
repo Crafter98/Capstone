@@ -26,7 +26,7 @@ for (i in secList) {
   
   df_base <- dbGetQuery(
     con,
-    paste0("SELECT section, date, title FROM primary_crawling WHERE section_num = ", i, " AND date = '2021.10.01';"))
+    paste0("SELECT section, date, title FROM primary_crawling WHERE section_num = ", i, " AND date = '2021.08.31';"))
   df_base <- as.data.frame(df_base)
   
   Encoding(df_base[,1]) <- 'UTF-8'

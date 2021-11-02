@@ -24,8 +24,7 @@ function circleSize(){
 }
 
 // top5 키워드 원에 맞춰서 세로선, 등수 원 위치와 색 조정
-function positioning(){
-    var maxWidth = $(window).width()
+function Top5Positioning(){
     var maxHeight = $(window).height()
     $(".clickDown").css("height", maxHeight)
 
@@ -50,7 +49,6 @@ function showKeywords(){
         data: {date : dateChange},
     }).done(function(data) {
         data = $.parseJSON(data)
-        // console.log(data)
         var keys = Object.keys(data)
         for(var i = 0; i < keys.length; i++){
             var key = keys[i]
@@ -80,6 +78,58 @@ function btnKeywordClick(num){
     // location.href = "125.187.32.134:8080/웹/main.html"
 }
 
+// 뉴스 div 위치 setting
+function newsPositioning(){
+    // 위치 set
+    var h = $(".date").outerHeight()
+    $(".day.news").css("top", h + "px")
+
+    // 높이 set
+    var maxHeight = $(".keywords").innerHeight()
+    var margin = $(".keywords li").css("margin-top").replace(/[^-\d\.]/g, '')
+    $(".day.news").css("height", maxHeight + margin * 2 + "px")
+}
+
+function showDetailNews(target){
+    var keyword = $(target).text() // 클릭된 키워드
+    var parent = target.closest("ul")
+    parent = $(parent).attr("class").substr(9) // days3, days2, days1
+
+    // 선택된 키워드 색 세팅
+    $(".keywords li").css("background-color", "#EEF2F9")
+    $(target).css("background-color", "white")
+
+    // 이미 열려있으면 키워드만 바꿈 
+    if($(".day.news." + parent).css("display") == "inline-block"){
+        // $(".day.news." + parent).css("border-bottom-right-radius", "20px")
+        $(".detailNews." + parent + " li").each(function(idx, item){
+            // $(this).text(keyword + " " + idx)
+            $(this).html("<a href='https://news.naver.com/main/read.naver?mode=LSD&mid=sec&sid1=100&oid=056&aid=0011112585' target='_blank'>제목</a>")
+        })
+    }
+    else{ // 다른게 열려있으면 닫고 이걸로 열고 키워드 바꿈
+        $(".day.news").css("display", "none")
+        $(".day.news." + parent).css("display", "inline-block")
+
+        $(".day.before").css("border-bottom-right-radius", "20px")
+        $(".day.before." + parent).css("border-bottom-right-radius", "0px")
+
+        $(".detailNews." + parent + " li").each(function(idx, item){
+            // $(this).text(keyword + " " + idx)
+            $(this).html("<a href='https://news.naver.com/main/read.naver?mode=LSD&mid=sec&sid1=100&oid=056&aid=0011112585' target='_blank'>제목</a>")
+        })
+
+        // 공백 간격 맞추는 코드
+        if(parent != "days1"){
+            var m = $(".day.before.days2").css("margin-left")
+            $(".day.before.days1").css("margin-right", m);
+        }
+        else{
+            $(".day.before.days1").css("margin-right", "0px");
+        }
+    }
+}
+
 // 자세히 알아보기 버튼 클릭
 function btnDownClick(){
     var y = $(".top5").offset().top
@@ -91,11 +141,53 @@ function btnTopClick(){
     $("html, body").animate({scrollTop: 0}, 500)
 }
 
+function setNewsKeyword(date, num){
+    dateChange = dateToString(date).replace(/-/gi, '.')
+    $.ajax({
+       url: "mainNewsKeyword.php",
+       type: "post",
+       data: {date : dateChange},
+   }).done(function(data) {
+       data = $.parseJSON(data)
+       var keys = Object.keys(data)
+       for(var i = 0; i < keys.length; i++){
+           var key = keys[i]
+           var d = data[key]
+
+           if(key.includes('section')){
+            //    key = key.substr(0, 8)
+            //    $(".section." + key).html(d)
+           }
+           else{
+               $(".keywords.days" + num + " li").eq(key).text(d)
+           }
+       }
+       showDetailNews($(".keywords.days1 li").eq(0))
+   })
+}
+
+function setDate(){
+    var date = new Date(now)
+    date.setDate(date.getDate() + 1)
+    
+    for(var i = 1; i < 4; i++){
+        date.setDate(date.getDate() - 1)
+
+        var str = dateToString(date)
+        var month = str.substr(5, 2)
+        var day = str.substr(8)
+        $(".date.days" + i).text(month + "월 " + day + "일")
+        setNewsKeyword(date, i)
+    }
+}
+
 $(document).ready(function(){
     circleSize()
-    positioning()
+    Top5Positioning()
+    newsPositioning()
     now = setNow()
-
+    // setDate()
+    
     $(window).scroll(function(){
         if($(this).scrollTop() > 400){
             $('#Top').fadeIn()
@@ -105,6 +197,7 @@ $(document).ready(function(){
         }
     })
     now = "2021-09-01"
+    setDate()
     
     var month = now.substr(5, 2)
     var day = now.substr(8)
@@ -115,5 +208,6 @@ $(document).ready(function(){
 
 $(window).resize(function(){
     circleSize()
-    positioning()
+    Top5Positioning()
+    newsPositioning()
 })
