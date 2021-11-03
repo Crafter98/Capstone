@@ -1,5 +1,9 @@
 <?php
 
+error_reporting(E_ALL);
+
+ini_set("display_errors", 1);
+
 // DB 연결 파트
 // $conn = mysqli_connect(
 //     '127.0.0.1',
@@ -18,22 +22,29 @@ $conn = mysqli_connect(
 // 웹에서 선택된 date와 section 값 가져와서 query 작성
 $date = '\''.$_POST['date'].'\'';
 $section = '\''.$_POST['section'].'\'';
+$keyword = '\''.$_POST['keyword'].'\'';
 
-$query = "SELECT keyword, frequency FROM primary_keywords WHERE date = ";
+$section = substr($section, 1, -1);
+$keyword = substr($keyword, 1, -1);
+
+$query = 'SELECT title, url FROM primary_crawling WHERE title LIKE "%';
+$query .= $keyword;
+$query .= '%" AND date = ';
 $query .= $date;
-$query .= "and section =";
+$query .= ' AND section LIKE "';
 $query .= $section;
-$query .= "ORDER BY frequency desc;";
+$query .= '%";';
 $result = mysqli_query($conn, $query);
 
-////////////////////// new code ////////////////////////
-$i = 1;
+$output = array();
+
+$i = 0;
 while($row = mysqli_fetch_array($result)){
-    // $output["keyword".$i] = $row["keyword"]."&#13;".$row["frequency"];
-    $output["keyword".$i] = $row["keyword"];
+    $output[$i." url"] = $row["url"];
+    $output[$i." title"] = $row["title"];
 
     $i = $i + 1;
-    if($i > 5){
+    if($i > 4){
         break;
     }
 }

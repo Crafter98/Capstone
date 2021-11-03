@@ -20,6 +20,10 @@ ul{
     padding: 0;
     margin: 0;
 }
+a { text-decoration:none;}
+a:link { color: black; text-decoration: none;}
+a:visited { color: black; text-decoration: none;}
+a:hover { color: blue; text-decoration: underline;}
 button{
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -226,7 +230,8 @@ button#siteName, #down, .btn :hover{
     margin: 5% 5% 5% 0%;
 }
 .detailNews li{
-    height: 45%;
+    height: 20%;
+    padding: 4%;
     font-size: 16px;
 }
 
@@ -234,6 +239,9 @@ button#siteName, #down, .btn :hover{
     margin-right: 4%;;
 }
 .day.news.days2, .day.news.days3{
+    display: none;
+}
+.section{
     display: none;
 }
 
