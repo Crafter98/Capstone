@@ -9,7 +9,7 @@ function showKeywords(){
                 section : section},
     }).done(function(data) {
         data = $.parseJSON(data)
-        var idx, keyword = sessionStorage.getItem('keyword')
+        var idx = 1, keyword = sessionStorage.getItem('keyword')
 
         if(data != null){
             var keys = Object.keys(data)
@@ -20,8 +20,6 @@ function showKeywords(){
                     idx = i + 1
                 }
             }
-            
-            // var keyword = $(".result.keyword1")
             ClickKeyword($(".result.keyword" + idx))
         }
         else{
@@ -128,8 +126,6 @@ function categoryClick(str){
     inactivateButton()
     section = str
     sessionStorage.setItem('section', section) // 분야 바뀔 때마다 storage 갱신
-    // var keyword = $(".result.keyword1").html()
-    // sessionStorage.setItem('keyword', keyword)
 
     activateButton()
     showKeywords()

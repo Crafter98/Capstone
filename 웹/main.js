@@ -1,4 +1,4 @@
-var now
+var now // 오늘 날짜 - 1일
 
 // rgb로 된 색상 16진수 색상으로 return
 function rgb2hex(rgb) {
@@ -43,7 +43,7 @@ function Top5Positioning(){
 // top5 키워드 원에 맞는 데이터 값 입력하기
 function showKeywords(){
     dateChange = now.replace(/-/gi, '.')
-     $.ajax({
+    $.ajax({
         url: "mainTop5.php",
         type: "post",
         data: {date : dateChange},
@@ -90,8 +90,20 @@ function newsPositioning(){
     $(".day.news").css("height", maxHeight + margin * 2 + "px")
 }
 
+// 자세히 알아보기 버튼 클릭
+function btnDownClick(){
+    var y = $(".top5").offset().top
+    $("html, body").animate({scrollTop: y - 40}, 500)
+}
+
+// top 버튼 클릭
+function btnTopClick(){
+    $("html, body").animate({scrollTop: 0}, 500)
+}
+
 function showDetailNews(target){
     var keyword = $(target).text() // 클릭된 키워드
+    var idx = $(target).index()
     var parent = target.closest("ul")
     parent = $(parent).attr("class").substr(9) // days3, days2, days1
 
@@ -101,13 +113,16 @@ function showDetailNews(target){
 
     // 이미 열려있으면 키워드만 바꿈 
     if($(".day.news." + parent).css("display") == "inline-block"){
-        // $(".day.news." + parent).css("border-bottom-right-radius", "20px")
         $(".detailNews." + parent + " li").each(function(idx, item){
             // $(this).text(keyword + " " + idx)
-            $(this).html("<a href='https://news.naver.com/main/read.naver?mode=LSD&mid=sec&sid1=100&oid=056&aid=0011112585' target='_blank'>제목</a>")
+            // getDetailNews(parent, keyword)
+            // $(this).html("<a href='https://news.naver.com/main/read.naver?mode=LSD&mid=sec&sid1=100&oid=056&aid=0011112585' target='_blank'>제목</a>")
         })
+        // $(".detailNews." + parent)
+        getDetailNews(parent, idx, keyword)
     }
     else{ // 다른게 열려있으면 닫고 이걸로 열고 키워드 바꿈
+        getDetailNews(parent, idx, keyword)
         $(".day.news").css("display", "none")
         $(".day.news." + parent).css("display", "inline-block")
 
@@ -116,7 +131,7 @@ function showDetailNews(target){
 
         $(".detailNews." + parent + " li").each(function(idx, item){
             // $(this).text(keyword + " " + idx)
-            $(this).html("<a href='https://news.naver.com/main/read.naver?mode=LSD&mid=sec&sid1=100&oid=056&aid=0011112585' target='_blank'>제목</a>")
+            // $(this).html("<a href='https://news.naver.com/main/read.naver?mode=LSD&mid=sec&sid1=100&oid=056&aid=0011112585' target='_blank'>제목</a>")
         })
 
         // 공백 간격 맞추는 코드
@@ -130,17 +145,6 @@ function showDetailNews(target){
     }
 }
 
-// 자세히 알아보기 버튼 클릭
-function btnDownClick(){
-    var y = $(".top5").offset().top
-    $("html, body").animate({scrollTop: y - 40}, 500)
-}
-
-// top 버튼 클릭
-function btnTopClick(){
-    $("html, body").animate({scrollTop: 0}, 500)
-}
-
 function setNewsKeyword(date, num){
     dateChange = dateToString(date).replace(/-/gi, '.')
     $.ajax({
@@ -149,14 +153,15 @@ function setNewsKeyword(date, num){
        data: {date : dateChange},
    }).done(function(data) {
        data = $.parseJSON(data)
+    //    console.log(data)
        var keys = Object.keys(data)
        for(var i = 0; i < keys.length; i++){
            var key = keys[i]
            var d = data[key]
 
            if(key.includes('section')){
-            //    key = key.substr(0, 8)
-            //    $(".section." + key).html(d)
+               key = key.substr(0, 1)
+               $(".section.days" + num + " li").eq(key).text(d)
            }
            else{
                $(".keywords.days" + num + " li").eq(key).text(d)
@@ -179,6 +184,43 @@ function setDate(){
         $(".date.days" + i).text(month + "월 " + day + "일")
         setNewsKeyword(date, i)
     }
+}
+
+function getDetailNews(target, idx, keyword){
+    var date = $(".date." + target).text()
+    var month = date.substr(0, 2)
+    var day = date.substr(4, 2)
+
+    date = "2021." + month + "." + day
+    var section = $(".section." + target + " li").eq(idx).text()
+    $.ajax({
+        url: "mainDetailNews.php",
+        type: "post",
+        data: {date: date,
+            section: section,
+            keyword: keyword},
+    }).done(function(data) {
+        data = $.parseJSON(data)
+    //    console.log(data)
+       var keys = Object.keys(data)
+       var str = "<a href='"
+       for(var i = 0; i < keys.length; i++){
+           var key = keys[i]
+           var d = data[key]
+           var index = key.substr(0, 1)
+
+           if(key.includes('url')){
+            //    $(".detailNews." + target + " li").eq(index).text(d)
+            str = str + d + "' target='_blank'>"
+           }
+           else{
+            //    $(".keywords.days" + num + " li").eq(key).text(d)
+            str = str + d + "</a>"
+            $(".detailNews." + target + " li").eq(index).html(str)
+            str = "<a href='"
+           }
+       }
+    })
 }
 
 $(document).ready(function(){
