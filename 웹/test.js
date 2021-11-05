@@ -36,6 +36,7 @@ function ClickKeyword(target){
     sessionStorage.setItem('keyword', keyword) // 키워드 바뀔 때마다 storage 갱신
     $(".result").css("color", "black")
     $(target).css("color", "red")
+    $("#DBKeyword").text(keyword)
 
     dateChange = $("#currentDate").text().replace(/-/gi, '.')
     $.ajax({
@@ -95,6 +96,7 @@ function setPosition(){
     var padding = $(".category").css("padding-left").replace(/[^-\d\.]/g, '')
     width = width + padding * 2
     $("#detail").css("margin-left", width + "px")
+    $("#yes").css("margin-left", width + "px")
 
     // 메달을 wrapper 정 가운데에 위치시키기
     width = ($(".wrapper").width() - 70) / 2
@@ -106,6 +108,13 @@ function setPosition(){
 
     // 단상 아래로 내리기
     $(".wrapper").css("margin-top", height * 0.15)
+
+    // top banner만큼 result1 내리기
+    height = $("#date").innerHeight() - 46.4
+    $(".main").css("margin-top", height + "px")
+
+    height = $("#date").height()
+    $("#selectedKeyword").css("height", height)
 }
 
 // <, > 버튼 클릭했을 때 날짜 바꾸는 코드
@@ -131,6 +140,11 @@ function categoryClick(str){
     showKeywords()
 }
 
+function setChartSize(){
+    var width = $(".grid.result3").width()
+    $("#chart").css("width", width * 0.7)
+}
+
 $.datepicker.setDefaults({
     showOn: 'button',
     buttonImage: "image/calender.png",
@@ -150,6 +164,7 @@ $.datepicker.setDefaults({
 
 $(document).ready(function(){
     setPosition()
+    // setChartSize()
     now = setNow()
     cur = now // now = 오늘 날짜, cur = 현재 선택된 날짜
 
@@ -173,4 +188,5 @@ $(document).ready(function(){
 
 $(window).resize(function(){
     setPosition()
+    // setChartSize()
 })

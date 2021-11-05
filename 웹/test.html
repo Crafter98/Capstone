@@ -3,7 +3,7 @@
     <head>
         <meta charset = "utf-8">
         <title>오늘의 키워드</title>
-        <link href="test.css?aft" type="text/css" rel="stylesheet">
+        <link href="test.css?after" type="text/css" rel="stylesheet">
         <link rel="icon" href="image/crown.png">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
@@ -12,7 +12,7 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         
         <script src="function.js"></script>
-        <script src="test.js?a"></script>
+        <script src="test.js?afff"></script>
 
     </head>
 
@@ -34,12 +34,17 @@
         </div>
         
         <div id="detail">
+            <div id="selectedKeyword">
+                키워드 : <span id="DBKeyword">언론중재</span>
+            </div>
+
             <div id="date">
                 <button id="yes" onclick="moveDate('-')">&lt</button>
                 <p1 id="currentDate"></p1>
                 <button id="tom" onclick="moveDate('+')">&gt</button>
                 <input type="text" id="datePicker"/>
             </div>
+
             <br><br>
     
             <div class="main">
@@ -79,12 +84,19 @@
                 </div>
     
                 <div class="grid result3">
-                    <p>result 3</p>
-                    <p>감성분석 결과</p>
-                    <p>감성분석 결과</p>
-                    <p>감성분석 결과</p>
-                    <p>감성분석 결과</p>
-                    <p>감성분석 결과</p>
+                    <h2>댓글 반응</h1>
+                    <div id="chart">
+                        <div class="bar pos">긍정</div>
+                        <div class="bar neg">부정</div>
+                    </div>
+
+                    <div id="comments">
+                        <ul>
+                            <li>댓글</li>
+                            <li>댓글</li>
+                            <li>댓글</li>
+                        </ul>
+                    </div>
                 </div>
     
             </div>
