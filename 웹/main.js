@@ -107,32 +107,16 @@ function showDetailNews(target){
     var parent = target.closest("ul")
     parent = $(parent).attr("class").substr(9) // days3, days2, days1
 
-    // 선택된 키워드 색 세팅
-    $(".keywords li").css("background-color", "#EEF2F9")
+    // 선택된 키워드 배경 색 세팅
+    $(".keywords li").css("background-color", "#EEF2F9") // 여기 때문에 hover 색상 변경 안됨
     $(target).css("background-color", "white")
 
-    // 이미 열려있으면 키워드만 바꿈 
-    if($(".day.news." + parent).css("display") == "inline-block"){
-        $(".detailNews." + parent + " li").each(function(idx, item){
-            // $(this).text(keyword + " " + idx)
-            // getDetailNews(parent, keyword)
-            // $(this).html("<a href='https://news.naver.com/main/read.naver?mode=LSD&mid=sec&sid1=100&oid=056&aid=0011112585' target='_blank'>제목</a>")
-        })
-        // $(".detailNews." + parent)
-        getDetailNews(parent, idx, keyword)
-    }
-    else{ // 다른게 열려있으면 닫고 이걸로 열고 키워드 바꿈
-        getDetailNews(parent, idx, keyword)
+    if($(".day.news." + parent).css("display") != "inline-block") { // 다른게 열려있으면 닫고 이걸로 열고 키워드 바꿈
         $(".day.news").css("display", "none")
         $(".day.news." + parent).css("display", "inline-block")
 
         $(".day.before").css("border-bottom-right-radius", "20px")
         $(".day.before." + parent).css("border-bottom-right-radius", "0px")
-
-        $(".detailNews." + parent + " li").each(function(idx, item){
-            // $(this).text(keyword + " " + idx)
-            // $(this).html("<a href='https://news.naver.com/main/read.naver?mode=LSD&mid=sec&sid1=100&oid=056&aid=0011112585' target='_blank'>제목</a>")
-        })
 
         // 공백 간격 맞추는 코드
         if(parent != "days1"){
@@ -143,6 +127,8 @@ function showDetailNews(target){
             $(".day.before.days1").css("margin-right", "0px");
         }
     }
+    getDetailNews(parent, idx, keyword) // 뉴스 기사 링크 세팅
+    setLi(parent) // li 간격 세팅
 }
 
 function setNewsKeyword(date, num){
@@ -169,6 +155,14 @@ function setNewsKeyword(date, num){
        }
        showDetailNews($(".keywords.days1 li").eq(0))
    })
+}
+
+function setLi(day){
+    var width  = $(".detailNews." + day).width()
+    var padding = width * 0.4
+    var height = $(".detailNews." + day).height()
+
+    $(".detailNews." + day + " li").css("height", (height - padding) / 4 + "px")
 }
 
 function setDate(){

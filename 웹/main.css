@@ -23,7 +23,7 @@ ul{
 a { text-decoration:none;}
 a:link { color: black; text-decoration: none;}
 a:visited { color: black; text-decoration: none;}
-a:hover { color: blue; text-decoration: underline;}
+/* a:hover { color: blue; text-decoration: underline;} */
 button{
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -52,7 +52,7 @@ button#siteName, #down, .btn :hover{
 
 .clickDown{
     text-align: center;
-    background-color: cornflowerblue;;
+    background-color: cornflowerblue;
     margin-top: 0;
 }
 #ment{
@@ -230,9 +230,22 @@ button#siteName, #down, .btn :hover{
     margin: 5% 5% 5% 0%;
 }
 .detailNews li{
+    font-size: 14px;
     height: 20%;
-    padding: 4%;
-    font-size: 16px;
+    padding: 5%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.detailNews li:hover{
+    -webkit-transform: scale(1.1,1.1);
+    -moz-transform: scale(1.1,1.1);
+    -o-transform: scale(1.1,1.1);
+    -ms-transform: scale(1.1,1.1);
+    transform: scale(1.1,1.1);
+    transition: .5s;
 }
 
 .day.news.days1{
