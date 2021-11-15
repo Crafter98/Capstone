@@ -39,11 +39,13 @@ function ClickKeyword(target){
     $("#DBKeyword").text(keyword)
 
     dateChange = $("#currentDate").text().replace(/-/gi, '.')
+    console.log(section)
     $.ajax({
         url: "relatedWords.php",
         type: "post",
         data: {date : dateChange,
-            keyword : keyword },
+            keyword : keyword,
+            section : section },
         }).done(function(data) {
             $('#relatedWordsTable').html(data);
             $(".grid.result2").css("visibility", "visible")
@@ -192,8 +194,8 @@ function setPosNeg(){
         var pos = data["pos"]
         var neg = data["neg"]
         var width = $("#chart").width() * 0.8
-        console.log(width * pos / (pos + neg))
-        console.log(width * neg / (pos + neg))
+        // console.log(width * pos / (pos + neg))
+        // console.log(width * neg / (pos + neg))
         $(".bar.pos").css("width", width * pos / (pos + neg))
         $(".bar.neg").css("width", width * neg / (pos + neg))
 
