@@ -72,7 +72,7 @@ button.ui-datepicker-trigger img{
     /* float: left; */
     position: fixed;
 
-    box-shadow: 10px 10px 20px lightgray;
+    box-shadow: 7px 7px 20px lightgray;
     z-index: 999;
 }
 .category p{
@@ -138,6 +138,7 @@ button.ui-datepicker-trigger img{
     padding: 5% 8%;
     border-radius: 30px;
     width: 50%;
+    font-size: 1.2em;
 }
 
 #date{
@@ -150,6 +151,7 @@ button.ui-datepicker-trigger img{
     border-bottom: 1px solid lightgray;
 
     left: 50%;
+    z-index: 3;
     transform: translate(-50%, 0);
 }
 #date button{
@@ -252,20 +254,54 @@ button.ui-datepicker-trigger img{
 .bar{
     display: inline-block;
     font-size: 16px;
+    overflow: auto;
+}
+.bar:hover{
+    cursor: pointer;
+
+    -webkit-transform: scale(1.1,1.1);
+    -moz-transform: scale(1.1,1.1);
+    -o-transform: scale(1.1,1.1);
+    -ms-transform: scale(1.1,1.1);
+    transform: scale(1.1,1.1);
+    transition: .5s;
 }
 .bar.pos{
     background-color: #6489FA;
     height: 50px;
     width: 40%;
     line-height: 50px;
+
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
 .bar.neg{
     background-color: #FA7864;
     height: 50px;
     width: 40%;
     line-height: 50px;
+
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 #comments{
     margin-top: 10%;
+    background-color: white;
+    border-radius: 50px;
+    padding: 5%;
+    padding-top: 0;
+    /* padding-left: ; */
+}
+
+table{
+    border-collapse: collapse;
+}
+.underline{
+    border-top: 1px solid #6489FA;
+    border-bottom: 1px solid #6489FA;
+    padding: 2%;
+}
+.title{
+    font-size: 1.5em;
 }

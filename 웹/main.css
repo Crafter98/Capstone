@@ -209,7 +209,7 @@ button#siteName, #down, .btn :hover{
     font-size: 16px;
 }
 .keywords li:hover{
-    background-color: whitesmoke;
+    background-color: white;
     cursor: pointer;
 }
 

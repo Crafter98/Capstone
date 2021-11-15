@@ -37,15 +37,15 @@ def dateChange(temp):
 
 # DB 연결파트
 ############## engine 아래에 있는거로 해보고 혹시 안되면 말해줘! ##############
-engine = create_engine("mysql+mysqldb://user:KAU@localhost:3306/capstone", encoding='utf-8')
-# engine = create_engine("mysql+mysqldb://user:KAU@125.187.32.134:3306/capstone", encoding='utf-8')
+# engine = create_engine("mysql+mysqldb://user:KAU@localhost:3306/capstone", encoding='utf-8')
+engine = create_engine("mysql+mysqldb://user:KAU@125.187.32.134:3306/capstone", encoding='utf-8')
 conn = engine.connect()
 
 
 # 뉴스의 기본 정보 가져오기
 # 날짜별로 크롤링
 ############## 여기 for문에서 날짜 범위 설정하기 ##############
-for a in range(20210830, 20210832):
+for a in range(20211104, 20211110):
     print(a)
 
     # 뉴스 섹션 (ex. 100 -> 경제)
