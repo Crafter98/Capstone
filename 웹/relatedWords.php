@@ -21,11 +21,14 @@ $conn = mysqli_connect(
 // 웹에서 선택된 date와 section 값 가져와서 query 작성
 $date = '\''.$_POST['date'].'\'';
 $keyword = '\''.$_POST['keyword'].'\'';
+$section = '\''.$_POST['section'].'\'';
 
 $query = "SELECT related_word, frequency FROM secondary_keywords WHERE date = ";
 $query .= $date;
 $query .= "and keyword =";
 $query .= $keyword;
+$query .= "and section =";
+$query .= $section;
 $query .= "ORDER BY frequency desc;";
 $result = mysqli_query($conn, $query);
 
