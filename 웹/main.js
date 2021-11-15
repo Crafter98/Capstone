@@ -108,7 +108,7 @@ function showDetailNews(target){
     parent = $(parent).attr("class").substr(9) // days3, days2, days1
 
     // 선택된 키워드 배경 색 세팅
-    $(".keywords li").css("background-color", "#EEF2F9") // 여기 때문에 hover 색상 변경 안됨
+    $(".keywords li").css("background-color", "") // 여기 때문에 hover 색상 변경 안됨 #EEF2F9
     $(target).css("background-color", "white")
 
     if($(".day.news." + parent).css("display") != "inline-block") { // 다른게 열려있으면 닫고 이걸로 열고 키워드 바꿈

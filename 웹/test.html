@@ -2,8 +2,8 @@
 <html>
     <head>
         <meta charset = "utf-8">
-        <title>오늘의 키워드</title>
-        <link href="test.css?after" type="text/css" rel="stylesheet">
+        <title>INKEY</title>
+        <link href="test.css?a" type="text/css" rel="stylesheet">
         <link rel="icon" href="image/crown.png">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
@@ -12,7 +12,7 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         
         <script src="function.js"></script>
-        <script src="test.js?afff"></script>
+        <script src="test.js?ad"></script>
 
     </head>
 
@@ -20,7 +20,7 @@
         <div class="category">
             <div class="banner">
                 <!-- <img id="crown" src="image/crown.png" width="30px"> -->
-                <button id="siteName" onclick="btnsiteNameClick()">오늘의 키워드</button>
+                <button id="siteName" onclick="btnsiteNameClick()">INKEY</button>
             </div>
             
             <p>카테고리</p>
@@ -35,7 +35,7 @@
         
         <div id="detail">
             <div id="selectedKeyword">
-                키워드 : <span id="DBKeyword">언론중재</span>
+                키워드&nbsp;&nbsp;<span id="DBKeyword"></span>
             </div>
 
             <div id="date">
@@ -86,16 +86,12 @@
                 <div class="grid result3">
                     <h2>댓글 반응</h1>
                     <div id="chart">
-                        <div class="bar pos">긍정</div>
-                        <div class="bar neg">부정</div>
+                        <div class="bar pos" onclick="setComments(1)">긍정</div>
+                        <div class="bar neg" onclick="setComments(0)">부정</div>
                     </div>
 
                     <div id="comments">
-                        <ul>
-                            <li>댓글</li>
-                            <li>댓글</li>
-                            <li>댓글</li>
-                        </ul>
+                        
                     </div>
                 </div>
     

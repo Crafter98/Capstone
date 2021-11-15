@@ -50,7 +50,9 @@ function ClickKeyword(target){
 
             var y = $(".grid.result2").offset().top
             // $("html, body").animate({scrollTop: y - 40}, 500)
-    });
+    })
+    setPosNeg()
+    setComments(1)
 }
 
 // 날짜 변경 버튼 활성화 / 비활성화 함수
@@ -82,12 +84,10 @@ function toEnglish(str){
 function activateButton(){
     btn = toEnglish(section)
     $(btn).css("background-color", "#F4B183")
-    // $(btn).css("background-color", "#8497B0")
 }
-function inactivateButton(btn){
+function inactivateButton(){
     btn = toEnglish(section)
-    $(btn).css("background-color", "#8497B0")
-    // $(btn).css("background-color", "#89BDE4")
+    $(btn).css("background-color", "") //#8497B0
 }
 
 function setPosition(){
@@ -128,7 +128,14 @@ function moveDate(str){
     $("#currentDate").text(cur)
     $('#datePicker').datepicker().datepicker("setDate", cur)
     sessionStorage.setItem('date', cur) // 날짜 바뀔 때마다 storage 갱신
+    sessionStorage.setItem('section', '정치')
+
+    inactivateButton()
+    section = '정치'
+    activateButton()
+
     showKeywords()
+    sessionStorage.setItem('keyword', '')
 }
 
 function categoryClick(str){
@@ -140,9 +147,68 @@ function categoryClick(str){
     showKeywords()
 }
 
-function setChartSize(){
-    var width = $(".grid.result3").width()
-    $("#chart").css("width", width * 0.7)
+function setComments(react){
+    if(react == 1){ // 긍정일 때
+        $(".bar.pos").css({'transform':'scale(1.1)'})
+        $(".bar.pos").css("color", "white")
+
+        $(".bar.neg").css({'transform':''})
+        $(".bar.neg").css("color", "")
+    }
+    else{ // 부정일 때
+        $(".bar.neg").css({'transform':'scale(1.1)'})
+        $(".bar.neg").css("color", "white")
+
+        
+        $(".bar.pos").css({'transform':''})
+        $(".bar.pos").css("color", "")
+    }
+
+    dateChange = $("#currentDate").text().replace(/-/gi, '.')
+    $.ajax({
+        url: "getComments.php",
+        type: "post",
+        data: {date : dateChange,
+            keyword : keyword,
+            section : section,
+            react : react},
+        }).done(function(data) {
+            $('#comments').html(data);
+    })
+}
+
+function setPosNeg(){
+    dateChange = $("#currentDate").text().replace(/-/gi, '.')
+    keyword = sessionStorage.getItem('keyword')
+    $.ajax({
+        url: "setPosNeg.php",
+        type: "post",
+        data: {date : dateChange,
+            keyword : keyword,
+            section : section },
+    }).done(function(data) {
+        data = $.parseJSON(data)
+
+        var pos = data["pos"]
+        var neg = data["neg"]
+        var width = $("#chart").width() * 0.8
+        console.log(width * pos / (pos + neg))
+        console.log(width * neg / (pos + neg))
+        $(".bar.pos").css("width", width * pos / (pos + neg))
+        $(".bar.neg").css("width", width * neg / (pos + neg))
+
+        $(".bar.pos").text("긍정 " + pos / (pos + neg) * 100 + "%")
+        $(".bar.neg").text("부정 " + neg / (pos + neg) * 100 + "%")
+
+        if(pos == 0){ // 부정 100%
+            $(".bar.pos").css("width", width * 0.1)
+            $(".bar.neg").css("width", width * 0.9)
+        }
+        else if(neg == 0){ // 긍정 100%
+            $(".bar.pos").css("width", width * 0.9)
+            $(".bar.neg").css("width", width * 0.1)
+        }
+    })
 }
 
 $.datepicker.setDefaults({
@@ -175,6 +241,7 @@ $(document).ready(function(){
     // btnInActive();
     showKeywords()
     activateButton()
+    setComments(1)
 
     $('#datePicker').datepicker().datepicker("setDate", cur)
 
@@ -188,5 +255,5 @@ $(document).ready(function(){
 
 $(window).resize(function(){
     setPosition()
-    // setChartSize()
+    setPosNeg()
 })
