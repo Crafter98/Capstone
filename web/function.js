@@ -1,7 +1,7 @@
 // 배너 사이트 이름 클릭
 function btnsiteNameClick(){
-    // location.href = "125.187.32.134:8080/웹/main.html"
-    location.href = "http://localhost/웹/main.html"
+    location.href = "/main.html"
+    // location.href = "http://localhost/웹/main.html"
 }
 
 // 날짜를 string으로 바꿔주는 함수

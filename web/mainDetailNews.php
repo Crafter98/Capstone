@@ -5,19 +5,19 @@ error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
 // DB 연결 파트
-// $conn = mysqli_connect(
-//     '127.0.0.1',
-//     'root',
-//     'twailight7',
-//     'capstone'
-// );
-
 $conn = mysqli_connect(
-    '125.187.32.134',
-    'user',
-    'KAU',
+    '127.0.0.1',
+    'root',
+    'twailight7',
     'capstone'
 );
+
+// $conn = mysqli_connect(
+//     '125.187.32.134',
+//     'user',
+//     'KAU',
+//     'capstone'
+// );
 
 // 웹에서 선택된 date와 section 값 가져와서 query 작성
 $date = '\''.$_POST['date'].'\'';
@@ -33,7 +33,7 @@ $query .= '%" AND date = ';
 $query .= $date;
 $query .= ' AND section LIKE "';
 $query .= $section;
-$query .= '%";';
+$query .= '%" limit 4;';
 $result = mysqli_query($conn, $query);
 
 $output = array();
@@ -44,9 +44,6 @@ while($row = mysqli_fetch_array($result)){
     $output[$i." title"] = $row["title"];
 
     $i = $i + 1;
-    if($i > 4){
-        break;
-    }
 }
 echo json_encode($output, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 ?>

@@ -1,4 +1,27 @@
 var cur, now, section
+// 배너 사이트 이름 클릭
+function btnsiteNameClick(){
+    location.href = "/web/main.html"
+}
+
+// 날짜를 string으로 바꿔주는 함수
+function dateToString(curDate){
+    var year = curDate.getFullYear()
+    var month = curDate.getMonth()+1
+    var date = curDate.getDate()
+
+    month = month >=10 ? month : "0" + month
+    date  = date  >= 10 ? date : "0" + date
+    return today = "" + year + "-" + month + "-" + date
+}
+
+// 오늘 하루 전으로 기본 세팅
+function setNow(){
+    var now = new Date()
+    now.setDate(now.getDate()-1)
+    now = dateToString(now)
+    return now
+}
 
 function showKeywords(){
     var dateChange = cur.replace(/-/gi, '.')
@@ -39,7 +62,7 @@ function ClickKeyword(target){
     $("#DBKeyword").text(keyword)
 
     dateChange = $("#currentDate").text().replace(/-/gi, '.')
-    console.log(section)
+
     $.ajax({
         url: "relatedWords.php",
         type: "post",
@@ -151,14 +174,14 @@ function categoryClick(str){
 
 function setComments(react){
     if(react == 1){ // 긍정일 때
-        $(".bar.pos").css({'transform':'scale(1.1)'})
+        $(".bar.pos").css({'transform':'scale(1.05)'})
         $(".bar.pos").css("color", "white")
 
         $(".bar.neg").css({'transform':''})
         $(".bar.neg").css("color", "")
     }
     else{ // 부정일 때
-        $(".bar.neg").css({'transform':'scale(1.1)'})
+        $(".bar.neg").css({'transform':'scale(1.05)'})
         $(".bar.neg").css("color", "white")
 
         
@@ -193,14 +216,18 @@ function setPosNeg(){
 
         var pos = data["pos"]
         var neg = data["neg"]
-        var width = $("#chart").width() * 0.8
-        // console.log(width * pos / (pos + neg))
-        // console.log(width * neg / (pos + neg))
+        var width = $("#chart").width() * 0.9
+
+        posWidth = (pos / (pos + neg) * 100).toFixed(1)
+        negWidth = (neg / (pos + neg) * 100).toFixed(1)
+
         $(".bar.pos").css("width", width * pos / (pos + neg))
         $(".bar.neg").css("width", width * neg / (pos + neg))
 
-        $(".bar.pos").text("긍정 " + pos / (pos + neg) * 100 + "%")
-        $(".bar.neg").text("부정 " + neg / (pos + neg) * 100 + "%")
+        // $(".bar.pos").text("긍정 " + posWidth + "%")
+        // $(".bar.neg").text("부정 " + negWidth + "%")
+        $(".bar.pos").text(posWidth + "%")
+        $(".bar.neg").text(negWidth + "%")
 
         if(pos == 0){ // 부정 100%
             $(".bar.pos").css("width", width * 0.1)
@@ -238,6 +265,7 @@ $(document).ready(function(){
 
     section = sessionStorage.getItem('section')
     cur = sessionStorage.getItem('date')
+    keyword = sessionStorage.getItem('keyword')
 
     $("#currentDate").text(cur)
     // btnInActive();

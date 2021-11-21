@@ -3,7 +3,7 @@
     <head>
         <meta charset = "utf-8">
         <title>INKEY</title>
-        <link href="test.css?a" type="text/css" rel="stylesheet">
+        <link href="test.css?ass" type="text/css" rel="stylesheet">
         <link rel="icon" href="image/crown.png">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
@@ -11,8 +11,8 @@
             type="text/javascript"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         
-        <script src="function.js"></script>
-        <script src="test.js?ads"></script>
+        <!-- <script src="function.jsa"></script> -->
+        <script src="test.js?aff"></script>
 
     </head>
 
@@ -85,6 +85,13 @@
     
                 <div class="grid result3">
                     <h2>댓글 반응</h1>
+                    <div id="show">
+                        <button class="btn pos"></button>
+                        <span id="spanPos">긍정</span>
+                        <button class="btn neg"></button>
+                        <span>부정</span>
+                    </div>
+
                     <div id="chart">
                         <div class="bar pos" onclick="setComments(1)">긍정</div>
                         <div class="bar neg" onclick="setComments(0)">부정</div>
