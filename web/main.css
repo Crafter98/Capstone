@@ -58,6 +58,7 @@ button#siteName, #down, .btn :hover{
 #ment{
     padding: 10% 0%;
     color: white;
+    font-size: 2.5em;
 }
 
 #down{
@@ -66,7 +67,8 @@ button#siteName, #down, .btn :hover{
     color: cornflowerblue;
     border-radius: 50px;
     margin-top: 5%px;
-    padding: 10px;
+    padding: 1%;
+    font-size: 1.5em;
 }
 
 /* ////////////////////////////////////////////////////////////////////////////////// */
@@ -213,21 +215,19 @@ button#siteName, #down, .btn :hover{
     cursor: pointer;
 }
 
-
 .day.news{
     width: 24%;
     border-bottom-right-radius: 20px;
     border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
     position: relative;
     background-color: #EEF2F9;
 }
 
 .detailNews{
     background-color: white;
-    height: 90%;
-    width: 95%;
     border-radius: 20px;
-    margin: 5% 5% 5% 0%;
+    width: 95%;
 }
 .detailNews li{
     font-size: 14px;
@@ -247,6 +247,9 @@ button#siteName, #down, .btn :hover{
     transform: scale(1.1,1.1);
     transition: .5s;
 }
+.detailNews li:not(:nth-child(4)){
+    border-bottom: 1px solid #8497B0;
+}
 
 .day.news.days1{
     margin-right: 4%;;
@@ -256,6 +259,14 @@ button#siteName, #down, .btn :hover{
 }
 .section{
     display: none;
+}
+
+.day .newsLink{
+    padding: 7%;;
+    background-color: #89BDE4;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    font-size: 16px;
 }
 
 /* ////////////////////////////////////////////////////////////////////////////////// */

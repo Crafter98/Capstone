@@ -3,7 +3,7 @@
     <head>
         <meta charset = "utf-8">
         <title>INKEY</title>
-        <link href="test.css?ass" type="text/css" rel="stylesheet">
+        <link href="test.css?a" type="text/css" rel="stylesheet">
         <link rel="icon" href="image/crown.png">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
@@ -14,6 +14,8 @@
         <!-- <script src="function.jsa"></script> -->
         <script src="test.js?aff"></script>
 
+        <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+        <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
     </head>
 
     <body>
@@ -80,11 +82,14 @@
                 </div>
     
                 <div class="grid result2">
-                    <div id="relatedWordsTable" class="table-responsive"></div>
+                    <h1>연관어</h1>
+                    <div class="chart-area">
+                        <div id="container" style="width:100%; height:100%;"></div>
+                    </div>
                 </div>
     
                 <div class="grid result3">
-                    <h2>댓글 반응</h1>
+                    <h1>댓글 반응</h1>
                     <div id="show">
                         <button class="btn pos"></button>
                         <span id="spanPos">긍정</span>
