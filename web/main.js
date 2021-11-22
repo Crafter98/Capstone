@@ -104,13 +104,44 @@ function btnKeywordClick(num){
 // 뉴스 div 위치 setting
 function newsPositioning(){
     // 위치 set
-    var h = $(".date").outerHeight()
-    $(".day.news").css("top", h + "px")
+    // var h = $(".date").outerHeight()
+    // $(".day.news").css("top", h + "px")
 
     // 높이 set
-    var maxHeight = $(".keywords").innerHeight()
-    var margin = $(".keywords li").css("margin-top").replace(/[^-\d\.]/g, '')
-    $(".day.news").css("height", maxHeight + margin * 2 + "px")
+    // var maxHeight = $(".keywords").outerHeight()
+    // console.log(maxHeight)
+    // var margin = $(".keywords li").css("margin-top").replace(/[^-\d\.]/g, '')
+    // $(".day.news").css("height", maxHeight + margin * 2 + "px")
+
+    // $(".day.news").css("height", maxHeight + "px")
+    // $(".detailNews").css("height", maxHeight + "px")
+
+
+
+
+
+    // var height = $(".day.before").height()
+    // $(".day.news").css("height", height)
+
+    // 관련 뉴스 div 높이 맞춤
+    var padding = $(".date").innerHeight()
+    var height = $(".date").height()
+    padding = (padding - height) / 2
+    $(".newsLink").css("height", height)
+    $(".newsLink").css("padding", padding)
+
+    var width = $(".detailNews.days1").width()
+    height = $(".keywords.days1").innerHeight()
+    var margin = width / 19
+    height = height - margin * 2
+
+    // detailNews 높이 맞춤
+    for(var i = 1; i < 4; i++){
+        $(".detailNews.days" + i).css("height", height)
+        $(".detailNews.days" + i).css("margin-top", margin)
+        $(".detailNews.days" + i).css("margin-bottom", margin)
+        setLi("days" + i)
+    }
 }
 
 // 자세히 알아보기 버튼 클릭

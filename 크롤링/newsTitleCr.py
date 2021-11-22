@@ -45,7 +45,7 @@ conn = engine.connect()
 # 뉴스의 기본 정보 가져오기
 # 날짜별로 크롤링
 ############## 여기 for문에서 날짜 범위 설정하기 ##############
-for a in range(20211104, 20211110):
+for a in range(20211103, 20211122):
     print(a)
 
     # 뉴스 섹션 (ex. 100 -> 경제)
@@ -85,13 +85,15 @@ for a in range(20211104, 20211110):
                         section = news_section.find('h3').get_text()
                         url = li.find('a')['href']
                         title = li.find('a').get_text()
-                        date = li.find(class_='date').get_text()
+                        # date = li.find(class_='date').get_text()
                     except AttributeError as err:
                         print(err)
                     else:
-                        date = date.split(" ")[0][:-1]
-                        if len(date) != 10:
-                            date = dateChange(date)
+                        # date = date.split(" ")[0][:-1]
+                        # if len(date) != 10:
+                        #     date = dateChange(date)
+                        date = str(a)
+                        date = date[0:4] + "." + date[4:6] + "." + date[6:]
                         news_info = {
                             "news_section": section,
                             "news_url": url,

@@ -330,3 +330,10 @@ table{
 .title{
     font-size: 1.5em;
 }
+.chart-area{
+    height: 300px;
+    border-radius: 20px;
+}
+#container{
+    border-radius: 20px;
+}

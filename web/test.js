@@ -70,11 +70,24 @@ function ClickKeyword(target){
             keyword : keyword,
             section : section },
         }).done(function(data) {
-            $('#relatedWordsTable').html(data);
-            $(".grid.result2").css("visibility", "visible")
+        data = $.parseJSON(data)
+        // console.log(data)
 
-            var y = $(".grid.result2").offset().top
-            // $("html, body").animate({scrollTop: y - 40}, 500)
+        if(data != null){
+            var keys = Object.keys(data)
+            var arr = []
+            for(var i = 0; i < keys.length; i++){
+                var key = keys[i]
+                var d = data[key]
+
+                if(key.includes('frequency')){
+                    key = key.substr(0, 1)
+                    var dataset = {"x" : data[key], "value" : d}
+                    arr.push(dataset)
+                }
+            }
+            wordCloud(arr)
+        }
     })
     setPosNeg()
     setComments(1)
@@ -238,6 +251,17 @@ function setPosNeg(){
             $(".bar.neg").css("width", width * 0.1)
         }
     })
+}
+
+function wordCloud(data){
+    $("#container").html('')
+
+    var chart = anychart.tagCloud(data)
+    chart.angles([0])
+    chart.container("container")
+    chart.normal().fontWeight(600)
+    chart.draw()
+    $(".anychart-credits").css("display", "none")
 }
 
 $.datepicker.setDefaults({
