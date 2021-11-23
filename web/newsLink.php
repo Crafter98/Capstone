@@ -24,31 +24,26 @@ $date = '\''.$_POST['date'].'\'';
 $section = '\''.$_POST['section'].'\'';
 $keyword = '\''.$_POST['keyword'].'\'';
 
-$query = "SELECT react FROM secondary_crawling WHERE date = ";
-$query .= $date;
-$query .= " and keyword =";
-$query .= $keyword;
-$query .= " and section =";
-$query .= $section;
-$query .= ";";
+$section = substr($section, 1, -1);
+$keyword = substr($keyword, 1, -1);
 
+$query = 'SELECT title, url FROM primary_crawling WHERE title LIKE "%';
+$query .= $keyword;
+$query .= '%" AND date = ';
+$query .= $date;
+$query .= ' AND section LIKE "';
+$query .= $section;
+$query .= '%" limit 5;';
 $result = mysqli_query($conn, $query);
 
 $output = array();
 
-$pos = 0;
-$neg = 0;
-$i = 1;
+$i = 0;
 while($row = mysqli_fetch_array($result)){
-    if($row["react"] == 0){
-        $neg = $neg + 1;
-    }
-    else{
-        $pos = $pos + 1;
-    }
-}
-$output["pos"] = $pos;
-$output["neg"] = $neg;
+    $output[$i." url"] = $row["url"];
+    $output[$i." title"] = $row["title"];
 
+    $i = $i + 1;
+}
 echo json_encode($output, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
 ?>

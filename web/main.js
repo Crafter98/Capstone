@@ -98,7 +98,7 @@ function btnKeywordClick(num){
     sessionStorage.setItem('date', now)
     sessionStorage.setItem('section', section)
 
-    location.href = "/web/test.html"
+    location.href = "/web/detailKeyword.html"
 }
 
 // 뉴스 div 위치 setting
@@ -258,11 +258,9 @@ function getDetailNews(target, idx, keyword){
            var index = key.substr(0, 1)
 
            if(key.includes('url')){
-            //    $(".detailNews." + target + " li").eq(index).text(d)
             str = str + d + "' target='_blank'>"
            }
            else{
-            //    $(".keywords.days" + num + " li").eq(key).text(d)
             str = str + d + "</a>"
             $(".detailNews." + target + " li").eq(index).html(str)
             str = "<a href='"
