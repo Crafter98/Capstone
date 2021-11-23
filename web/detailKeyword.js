@@ -60,6 +60,7 @@ function ClickKeyword(target){
     $(".result").css("color", "black")
     $(target).css("color", "red")
     $("#DBKeyword").text(keyword)
+    showNewsLink()
 
     dateChange = $("#currentDate").text().replace(/-/gi, '.')
 
@@ -264,6 +265,37 @@ function wordCloud(data){
     $(".anychart-credits").css("display", "none")
 }
 
+function showNewsLink(){
+    var keyword = sessionStorage.getItem('keyword')
+    var dateChange = cur.replace(/-/gi, '.')
+    $.ajax({
+        url: "newsLink.php",
+        type: "post",
+        data: {date: dateChange,
+            section: section,
+            keyword: keyword},
+    }).done(function(data) {
+        data = $.parseJSON(data)
+    //    console.log(data)
+       var keys = Object.keys(data)
+       var str = "<a href='"
+       for(var i = 0; i < keys.length; i++){
+           var key = keys[i]
+           var d = data[key]
+           var index = key.substr(0, 1)
+
+           if(key.includes('url')){
+            str = str + d + "' target='_blank'>"
+           }
+           else{
+            str = str + d + "</a>"
+            $("#links li").eq(index).html(str)
+            str = "<a href='"
+           }
+       }
+    })
+}
+
 $.datepicker.setDefaults({
     showOn: 'button',
     buttonImage: "image/calender.png",
@@ -280,6 +312,11 @@ $.datepicker.setDefaults({
     showMonthAfterYear: true,
     yearSuffix: '년'
 })
+
+// top 버튼 클릭
+function btnTopClick(){
+    $("html, body").animate({scrollTop: 0}, 500)
+}
 
 $(document).ready(function(){
     setPosition()
@@ -304,6 +341,15 @@ $(document).ready(function(){
         $("#currentDate").text(cur)
         sessionStorage.setItem('date', cur) // 날짜 바뀔 때마다 storage 갱신
         showKeywords()
+    })
+
+    $(window).scroll(function(){
+        if($(this).scrollTop() > 400){
+            $('#Top').fadeIn()
+        }
+        else {
+            $('#Top').fadeOut()
+        }
     })
 })
 

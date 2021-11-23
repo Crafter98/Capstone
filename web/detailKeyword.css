@@ -49,6 +49,11 @@ ul{
     margin: 0;
 }
 
+a { text-decoration:none;}
+a:link { color: black; text-decoration: none;}
+a:visited { color: black; text-decoration: none;}
+a:hover { color: #8497B0; text-decoration: underline;}
+
 button.ui-datepicker-trigger img{
     width: 20px;
     height: 20px;
@@ -229,19 +234,54 @@ button.ui-datepicker-trigger img{
 }
 
 /* ////////////////////////// result 2 ////////////////////////// */
-.grid.result2{
+.grid.result24{
+    background-color: white;
+    width: 45%;
+    margin: 3% 0% 3% 0%;
+}
+
+.result2{
     background-color: #E5EBF4;
-    width: 42%;
-    padding: 2%;
-    margin: 3% 0%;
+    padding: 4%;
     border-radius: 50px;
 }
+
+.result4{
+    background-color: #E5EBF4;
+    padding: 4%;
+    margin-top: 7%;
+    border-radius: 50px;
+}
+#newsLink{
+    border-radius: 50px;
+    background-color: white;
+    margin-top: 8%;
+}
+
+#links li{
+    font-size: 16px;
+    height: 20%;
+    padding: 5%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+}
+/* #links li:hover{
+    -webkit-transform: scale(1.1,1.1);
+    -moz-transform: scale(1.1,1.1);
+    -o-transform: scale(1.1,1.1);
+    -ms-transform: scale(1.1,1.1);
+    transform: scale(1.1,1.1);
+    transition: .5s;
+} */
 
 /* ////////////////////////// result 3 ////////////////////////// */
 .grid.result3{
     background-color: #E5EBF4;
     width: 42%;
-    margin: 3% 0% 3% 2%;
+    margin: 3% 0% 3% 3%;
     padding: 2%;
     border-radius: 50px;
 }
@@ -333,7 +373,27 @@ table{
 .chart-area{
     height: 300px;
     border-radius: 20px;
+    margin-top: 8%;
+    margin-bottom: 3%;
 }
 #container{
     border-radius: 20px;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////// */
+#Top{
+    position: fixed;
+    right: 2%;
+    bottom: 50px;
+    z-index: 999;
+    display: none;
+
+    border-radius: 50%;
+    border: 0;
+    background-color: black;
+    color: white;
+    width: 50px;
+    height: 50px;
+    font-size: 1em;
+    font-family: 'EliceDigitalBaeum_Bold';
 }

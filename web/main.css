@@ -23,7 +23,7 @@ ul{
 a { text-decoration:none;}
 a:link { color: black; text-decoration: none;}
 a:visited { color: black; text-decoration: none;}
-/* a:hover { color: blue; text-decoration: underline;} */
+a:hover { color: #8497B0; text-decoration: underline;}
 button{
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -239,14 +239,14 @@ button#siteName, #down, .btn :hover{
     align-items: center;
     justify-content: center;
 }
-.detailNews li:hover{
+/* .detailNews li:hover{
     -webkit-transform: scale(1.1,1.1);
     -moz-transform: scale(1.1,1.1);
     -o-transform: scale(1.1,1.1);
     -ms-transform: scale(1.1,1.1);
     transform: scale(1.1,1.1);
     transition: .5s;
-}
+} */
 .detailNews li:not(:nth-child(4)){
     border-bottom: 1px solid #8497B0;
 }

@@ -3,7 +3,7 @@
     <head>
         <meta charset = "utf-8">
         <title>INKEY</title>
-        <link href="test.css?a" type="text/css" rel="stylesheet">
+        <link href="detailKeyword.css?a" type="text/css" rel="stylesheet">
         <link rel="icon" href="image/crown.png">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
@@ -11,8 +11,7 @@
             type="text/javascript"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         
-        <!-- <script src="function.jsa"></script> -->
-        <script src="test.js?aff"></script>
+        <script src="detailKeyword.js?a"></script>
 
         <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
         <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
@@ -81,11 +80,27 @@
 
                 </div>
     
-                <div class="grid result2">
-                    <h1>연관어</h1>
-                    <div class="chart-area">
-                        <div id="container" style="width:100%; height:100%;"></div>
+                <div class="grid result24">
+                    <div class="result2">
+                        <h1>연관어</h1>
+                        <div class="chart-area">
+                            <div id="container" style="width:100%; height:100%;"></div>
+                        </div>
                     </div>
+
+                    <div class="result4">
+                        <h1>관련 뉴스 기사</h1>
+                        <div id="newsLink">
+                            <ul id="links">
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
                 </div>
     
                 <div class="grid result3">
@@ -102,13 +117,11 @@
                         <div class="bar neg" onclick="setComments(0)">부정</div>
                     </div>
 
-                    <div id="comments">
-                        
-                    </div>
+                    <div id="comments"></div>
                 </div>
-    
             </div>
         </div>
+        <button id="Top" onclick="btnTopClick()">↑</button>
         
     </body>
 </html>
