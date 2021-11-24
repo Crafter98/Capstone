@@ -9,7 +9,8 @@ html, body{
     overflow: auto;
     margin: 0;
     padding: 0;
-    background-color: #E5EBF4;
+    /* background-color: #E5EBF4; */
+    background-color: #E8EAED;
 }
 h1{
     margin: 0;
@@ -34,6 +35,11 @@ button{
 button#siteName, #down, .btn :hover{
     cursor:pointer;
 }
+.img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 .banner{
     /* text-align: center; */
@@ -52,7 +58,9 @@ button#siteName, #down, .btn :hover{
 
 .clickDown{
     text-align: center;
-    background-color: cornflowerblue;
+    /* background-color: cornflowerblue; */
+    /* background-color: #18B7BE; */
+    background-color: #161B23;
     margin-top: 0;
 }
 #ment{
@@ -64,7 +72,9 @@ button#siteName, #down, .btn :hover{
 #down{
     border: 0;
     background-color: white;
-    color: cornflowerblue;
+    /* color: cornflowerblue; */
+    /* color: #18B7BE; */
+    color: #161B23;
     border-radius: 50px;
     margin-top: 5%px;
     padding: 1%;
@@ -195,10 +205,14 @@ button#siteName, #down, .btn :hover{
 }
 .day .date{
     padding: 7%;;
-    background-color: #89BDE4;
+    /* background-color: #89BDE4; */
+    /* background-color: #161B23; */
+    background-color: #2C2C2C;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     font-size: 16px;
+
+    color: white;
 }
 
 .keywords{
@@ -267,6 +281,8 @@ button#siteName, #down, .btn :hover{
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     font-size: 16px;
+
+    color: white;
 }
 
 /* ////////////////////////////////////////////////////////////////////////////////// */

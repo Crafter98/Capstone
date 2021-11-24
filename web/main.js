@@ -103,26 +103,6 @@ function btnKeywordClick(num){
 
 // 뉴스 div 위치 setting
 function newsPositioning(){
-    // 위치 set
-    // var h = $(".date").outerHeight()
-    // $(".day.news").css("top", h + "px")
-
-    // 높이 set
-    // var maxHeight = $(".keywords").outerHeight()
-    // console.log(maxHeight)
-    // var margin = $(".keywords li").css("margin-top").replace(/[^-\d\.]/g, '')
-    // $(".day.news").css("height", maxHeight + margin * 2 + "px")
-
-    // $(".day.news").css("height", maxHeight + "px")
-    // $(".detailNews").css("height", maxHeight + "px")
-
-
-
-
-
-    // var height = $(".day.before").height()
-    // $(".day.news").css("height", height)
-
     // 관련 뉴스 div 높이 맞춤
     var padding = $(".date").innerHeight()
     var height = $(".date").height()
@@ -162,8 +142,12 @@ function showDetailNews(target){
     parent = $(parent).attr("class").substr(9) // days3, days2, days1
 
     // 선택된 키워드 배경 색 세팅
-    $(".keywords li").css("background-color", "") // 여기 때문에 hover 색상 변경 안됨 #EEF2F9
+    $(".keywords li").css("background-color", "")
     $(target).css("background-color", "white")
+
+    // 선택된 키워드 글씨 색 세팅
+    $(".keywords li").css("color", "")
+    $(target).css("color", "#5271FF")
 
     if($(".day.news." + parent).css("display") != "inline-block") { // 다른게 열려있으면 닫고 이걸로 열고 키워드 바꿈
         $(".day.news").css("display", "none")
@@ -171,6 +155,17 @@ function showDetailNews(target){
 
         $(".day.before").css("border-bottom-right-radius", "20px")
         $(".day.before." + parent).css("border-bottom-right-radius", "0px")
+
+        // 배경, 글씨 색 변경
+        $(".date").css("background-color", "")
+        $(".date." + parent).css("background-color", "#5271FF")
+        // $(".date").css("color", "")
+        // $(".date." + parent).css("color", "white")
+
+        $(".newsLink").css("background-color", "")
+        $(".newsLink." + parent).css("background-color", "#5271FF")
+        // $(".newsLink").css("color", "")
+        // $(".newsLink." + parent).css("color", "white")
 
         // 공백 간격 맞추는 코드
         if(parent != "days1"){
@@ -205,9 +200,14 @@ function setNewsKeyword(date, num){
            }
            else{
                $(".keywords.days" + num + " li").eq(key).text(d)
-           }
-       }
-       showDetailNews($(".keywords.days1 li").eq(0))
+            }
+        }
+        showDetailNews($(".keywords.days1 li").eq(0))
+
+        $(".date.days1").css("background-color", "#5271FF")
+        $(".newsLink.days1").css("background-color", "#5271FF")
+        // $(".date.days1").css("color", "white")
+        // $(".newsLink.days1").css("color", "white")
    })
 }
 
@@ -284,7 +284,7 @@ $(document).ready(function(){
             $('#Top').fadeOut()
         }
     })
-    now = "2021-09-01"
+    // now = "2021-09-01"
     setDate()
     
     var month = now.substr(5, 2)

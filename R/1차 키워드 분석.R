@@ -1,13 +1,16 @@
+```{r}
+install.packages("KoNLP")
+```
 library(KoNLP)
 library(dplyr)
 library(stringr)
 library(RMySQL)
-useNIADic() # KoNLP에서 지원하는 NIA사전
+useNIADic() # KoNLP?��?�� 지?��?��?�� NIA?��?��
 
 
-# 오류났을 경우 반복된 DB연결을 막기 위해 아래 1줄 같이 실행
+# ?��류났?�� 경우 반복?�� DB?��결을 막기 ?��?�� ?��?�� 1�? 같이 ?��?��
 #dbDisconnect(con)
-# DB 연결 및 삽입
+# DB ?���? �? ?��?��
 con <- dbConnect(MySQL(),
                  user = 'user',
                  password = 'KAU',
@@ -26,34 +29,34 @@ for (i in secList) {
   
   df_base <- dbGetQuery(
     con,
-    paste0("SELECT section, date, title FROM primary_crawling WHERE section_num = ", i, " AND date = '2021.08.31';"))
+    paste0("SELECT section, date, title FROM primary_crawling WHERE section_num = ", i, " AND date = '2021.09.02';"))
   df_base <- as.data.frame(df_base)
   
   Encoding(df_base[,1]) <- 'UTF-8'
   Encoding(df_base[,3]) <- 'UTF-8'
   
-  # 특수문자, 특정 단어, 숫자 제거
-  df_base$section <- gsub("속보", "", df_base$section)
+  # ?��?��문자, ?��?�� ?��?��, ?��?�� ?���?
+  df_base$section <- gsub("?���?", "", df_base$section)
   df_base$section <- gsub(" ", "", df_base$section)
   df_base$title <- gsub("\\d+", "", df_base$title)
-  df_base$title <- gsub("오늘", "", df_base$title)
+  df_base$title <- gsub("?��?��", "", df_base$title)
   df_base$title <- str_replace_all(df_base$title, "\\W", " ")
   
   # 명사추출
   nouns <- extractNoun(df_base$title)
-  # 추출한 명사 list를 문자열 벡터로 변환, 단어별 빈도표 생성
+  # 추출?�� 명사 list�? 문자?�� 벡터�? 변?��, ?��?���? 빈도?�� ?��?��
   wordcount <- table(unlist(nouns))
-  # 데이터 프레임으로 변환
+  # ?��?��?�� ?��?��?��?���? 변?��
   df_keyword <- as.data.frame(wordcount, stringsAsFactors = F)
-  # 변수명 수정
+  # 변?���? ?��?��
   df_keyword <- rename(df_keyword, keyword=Var1, freqeuncy=Freq)
-  # 두 글자 이상 단어만 추출
+  # ?�� 글?�� ?��?�� ?��?���? 추출
   df_keyword <- filter(df_keyword, nchar(keyword) >= 2)
-  # 상위 5개 추출
+  # ?��?�� 5�? 추출
   top5 <- df_keyword %>%
     arrange(desc(freqeuncy)) %>%
     head(5)
-  # df 추가
+  # df 추�?�
   top5$section <- df_base$section[1]
   top5$date <- df_base$date[1]
   
