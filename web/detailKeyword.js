@@ -23,6 +23,21 @@ function setNow(){
     return now
 }
 
+// 버튼 width, height 맞추기
+function setYesTom(){
+    var width = $("#yes").width()
+    var height = $("#yes").height()
+
+    if(height > width){
+        $("#yes").css("width", height)
+        $("#tom").css("width", height)
+    }
+    else if(height < width){
+        $("#yes").css("height", width)
+        $("#tom").css("height", width)
+    }
+}
+
 function showKeywords(){
     var dateChange = cur.replace(/-/gi, '.')
     $.ajax({
@@ -58,7 +73,8 @@ function ClickKeyword(target){
     var keyword = $(target).text()
     sessionStorage.setItem('keyword', keyword) // 키워드 바뀔 때마다 storage 갱신
     $(".result").css("color", "black")
-    $(target).css("color", "red")
+    // $(target).css("color", "red")
+    $(target).css("color", "#5271FF")
     $("#DBKeyword").text(keyword)
     showNewsLink()
 
@@ -122,7 +138,7 @@ function toEnglish(str){
 // 카테고리 버튼 활성화/비활성화 색 변경 함수
 function activateButton(){
     btn = toEnglish(section)
-    $(btn).css("background-color", "#F4B183")
+    $(btn).css("background-color", "#5271FF") // 주황 #F4B183
 }
 function inactivateButton(){
     btn = toEnglish(section)
@@ -197,7 +213,6 @@ function setComments(react){
     else{ // 부정일 때
         $(".bar.neg").css({'transform':'scale(1.05)'})
         $(".bar.neg").css("color", "white")
-
         
         $(".bar.pos").css({'transform':''})
         $(".bar.pos").css("color", "")
@@ -238,16 +253,14 @@ function setPosNeg(){
         $(".bar.pos").css("width", width * pos / (pos + neg))
         $(".bar.neg").css("width", width * neg / (pos + neg))
 
-        // $(".bar.pos").text("긍정 " + posWidth + "%")
-        // $(".bar.neg").text("부정 " + negWidth + "%")
         $(".bar.pos").text(posWidth + "%")
         $(".bar.neg").text(negWidth + "%")
 
-        if(pos == 0){ // 부정 100%
+        if(posWidth <= 10){ // 부정 100%
             $(".bar.pos").css("width", width * 0.1)
             $(".bar.neg").css("width", width * 0.9)
         }
-        else if(neg == 0){ // 긍정 100%
+        else if(negWidth <= 10){ // 긍정 100%
             $(".bar.pos").css("width", width * 0.9)
             $(".bar.neg").css("width", width * 0.1)
         }
@@ -320,6 +333,7 @@ function btnTopClick(){
 
 $(document).ready(function(){
     setPosition()
+    setYesTom()
     // setChartSize()
     now = setNow()
     cur = now // now = 오늘 날짜, cur = 현재 선택된 날짜
@@ -356,4 +370,5 @@ $(document).ready(function(){
 $(window).resize(function(){
     setPosition()
     setPosNeg()
+    setYesTom()
 })

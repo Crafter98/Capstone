@@ -65,7 +65,8 @@ button.ui-datepicker-trigger img{
 
 /* ////////////////////////// category ////////////////////////// */
 .category{
-    background-color: #E5EBF4;
+    /* background-color: #E5EBF4; */
+    background-color: #E8EAED;
     padding: 0% 3%;
     margin: 0;
     width: 10%;
@@ -87,8 +88,8 @@ button.ui-datepicker-trigger img{
     width: 100%;
     margin-top: 10px;
     padding: 7% 5%;
-    background-color: #8497B0;
-    /* background-color: #89BDE4; */
+    /* background-color: #8497B0; */
+    background-color: #161B23;
     border: 0;
     color: white;
 
@@ -99,8 +100,8 @@ button.ui-datepicker-trigger img{
 }
 .category button:not(#siteName):hover{
     color: white;
-    background-color: #F4B183;
-    /* background-color: #8497B0; */
+    /* background-color: #F4B183; */
+    background-color: #5271FF;
     cursor:pointer;
 }
 
@@ -110,8 +111,9 @@ button.ui-datepicker-trigger img{
     border: 0;
     padding: 10px;
     font-weight: bold;
-    font-size: 1.2em;
-    background-color: #E5EBF4;
+    font-size: 1.5em;
+    /* background-color: #E5EBF4; */
+    background-color: #E8EAED;
     font-family: 'EliceDigitalBaeum_Bold';
 }
 #siteName:hover{
@@ -139,7 +141,8 @@ button.ui-datepicker-trigger img{
 }
 
 #DBKeyword{
-    background-color: #E5EBF4;
+    /* background-color: #E5EBF4; */
+    background-color: #E8EAED;
     padding: 5% 8%;
     border-radius: 30px;
     width: 50%;
@@ -166,6 +169,18 @@ button.ui-datepicker-trigger img{
     font-size: 1em;
     font-family: inherit;
 }
+#date button:not(.ui-datepicker-trigger){
+    /* background-color: #E5EBF4; */
+    background-color: #E8EAED;
+    border-radius: 50%;
+    padding: 0;
+}
+#date button:not(.ui-datepicker-trigger):hover{
+    background-color: cornflowerblue;
+}
+#date button:hover{
+    cursor: pointer;
+}
 
 /* ////////////////////////// result 1 ////////////////////////// */
 .main{
@@ -184,7 +199,8 @@ button.ui-datepicker-trigger img{
 }
 
 .grid.result1{
-    background-color: #E5EBF4;
+    /* background-color: #E5EBF4; */
+    background-color: #E8EAED;
     width: 90%;
     height: 500px;
     padding: 2%;
@@ -221,6 +237,7 @@ button.ui-datepicker-trigger img{
 .stair{
     display: inline-block;
     background-color: cornflowerblue;
+    /* background-color: #88898B; */
     margin-top: 5%;
     padding: 0;
     border: 0;
@@ -241,13 +258,15 @@ button.ui-datepicker-trigger img{
 }
 
 .result2{
-    background-color: #E5EBF4;
+    /* background-color: #E5EBF4; */
+    background-color: #E8EAED;
     padding: 4%;
     border-radius: 50px;
 }
 
 .result4{
-    background-color: #E5EBF4;
+    /* background-color: #E5EBF4; */
+    background-color: #E8EAED;
     padding: 4%;
     margin-top: 7%;
     border-radius: 50px;
@@ -279,7 +298,8 @@ button.ui-datepicker-trigger img{
 
 /* ////////////////////////// result 3 ////////////////////////// */
 .grid.result3{
-    background-color: #E5EBF4;
+    /* background-color: #E5EBF4; */
+    background-color: #E8EAED;
     width: 42%;
     margin: 3% 0% 3% 3%;
     padding: 2%;

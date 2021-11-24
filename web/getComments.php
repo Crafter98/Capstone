@@ -1,19 +1,27 @@
 <?php
 
 // DB 연결 파트
+// $conn = mysqli_connect(
+//     '127.0.0.1',
+//     'root',
+//     'twailight7',
+//     'capstone'
+// );
+
 $conn = mysqli_connect(
-    '127.0.0.1',
-    'root',
-    'twailight7',
+    '125.187.32.134',
+    'user',
+    'KAU',
     'capstone'
 );
 
-// $conn = mysqli_connect(
-//     '125.187.32.134',
-//     'user',
-//     'KAU',
-//     'capstone'
-// );
+function RemoveSpecialChar($str)
+{
+    $res = preg_replace('/[0-9\@\.\;]+/', '', $str);
+    $res = str_replace(array("\\n", "\\", "/"), '', $str);
+
+    return $res;
+}
 
 // 웹에서 선택된 date와 section 값 가져와서 query 작성
 $date = '\''.$_POST['date'].'\'';
@@ -30,7 +38,6 @@ $query .= $section;
 $query .= " and react =";
 $query .= $react;
 $query .= " limit 10;";
-// $query .= ";";
 
 $result = mysqli_query($conn, $query);
 
@@ -42,9 +49,11 @@ $output .= '
 ';
 
 while($row = mysqli_fetch_array($result)){
+    $str = RemoveSpecialChar($row["comments"]);
+
     $output .= '
     <tr>
-    <td height="40px" align="left" class="underline">'.$row["comments"].'</td>
+    <td height="40px" align="left" class="underline">'.$str.'</td>
     </tr>
     ';
 }
