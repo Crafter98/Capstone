@@ -11,6 +11,15 @@ import re
 import sys
 import pprint
 
+def flatten(l):
+    flatList = []
+    for elem in l:
+        if type(elem) == list:
+            for e in elem:
+                flatList.append(e)
+        else:
+            flatList.append(elem)
+    return flatList
 
 def sentence(l):
     string = ''
@@ -22,8 +31,8 @@ def sentence(l):
             string = string + ' ' + str(elem)
     return string
 
-engine = create_engine("mysql+mysqldb://user:KAU@localhost:3306/capstone", encoding='utf-8')
-# engine = create_engine("mysql+mysqldb://user:KAU@125.187.32.134:3306/capstone", encoding='utf-8')
+# engine = create_engine("mysql+mysqldb://user:KAU@localhost:3306/capstone", encoding='utf-8')
+engine = create_engine("mysql+mysqldb://user:KAU@125.187.32.134:3306/capstone", encoding='utf-8')
 conn = engine.connect()
 
 # 1차 키워드 날짜 설정해서 가져오기
@@ -41,6 +50,7 @@ for data in result:
 
     List = []
     allComments = []
+    idx = 1
     # 한 키워드와 관련된 모든 뉴스 기사의 댓글 크롤링
     for u in urls:
         url = str(u['url'])
@@ -71,25 +81,35 @@ for data in result:
             else:
                 page += 1
 
-        allComments = sentence(List)
+        # allComments = sentence(List)
+        allComments = flatten(List)
 
-    comments_info = {
-        "keyword": keyword,
-        "comments" : allComments,
-        "date" : date,
-        "section" : section
-    }
     comment_list = []
-    comment_list.append(comments_info)
+    for comments in allComments:
+        comments_info = {
+            "keyword": keyword,
+            "comments": comments,
+            "date": date,
+            "section": section,
+            "idx": idx,
+            "react": 0
+        }
 
-    # dtypesql = {'keyword': sqlalchemy.types.TEXT(),
-    #             'comments': sqlalchemy.dialects.mysql.LONGTEXT,
-    #             'date': sqlalchemy.types.TEXT(),
-    #             'section' : sqlalchemy.types.TEXT()
-    #             }
+        comment_list.append(comments_info)
+        idx = idx + 1
+
+    if len(comment_list) == 0:
+        comment_list = [{
+            "keyword": keyword,
+            "comments": "",
+            "date": date,
+            "section": section,
+            "idx": idx,
+            "react": 0
+        }]
 
     df = pd.DataFrame(comment_list)
-    df.columns = ['keyword', 'comments', 'date', 'section']
+    df.columns = ['keyword', 'comments', 'date', 'section', 'idx', 'react']
     df.to_sql(name='secondary_crawling', con=engine, if_exists='append', index = False)
 
     print(keyword, "save")
